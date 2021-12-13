@@ -3,10 +3,10 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialGames = async () => {
     const games = await axios('localhost:3000/games/season/37/15'); // 15 random games from season 15
 
-    const json = await json(game)
+    // const json = await json(game)
 
-    return json;
-    // return game;
+    // return json;
+    return game;
     // its JSONed in the fetch return, so it SHOULDN'T require it here ...
 }
 

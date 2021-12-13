@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Clue } from '../clue.js';
+import { Clue } from '../clue.js.js';
 
 
 
@@ -18,6 +18,29 @@ import { Clue } from '../clue.js';
 // 6 Category Columns will be rendered
 // CategoryColumn will be imported to GameBoard, and mapped out with the proper data
 
+
+
+/* 
+CLUE SLICE
+
+{
+    prepardy: {
+        "category-name": { 200: "", 400: "", 600: "", 800: "", 1000: "" }
+    }
+
+}
+
+
+{
+    prepardy:
+
+
+
+
+}
+
+*/
+
 export const CategoryColumn = (props) => {
 
     const { category, clues } = props; // destructured the props object, assigning the properties to easily-accessible variables
@@ -26,6 +49,13 @@ export const CategoryColumn = (props) => {
 
         <div className="category">
             <div className="column">
+                <div className="category-header">{category.toUpperCase()}</div>
+                {
+                    clues.map((clue) => {
+                        return <Clue />
+                    })
+
+                }
 
 
 
@@ -40,15 +70,6 @@ export const CategoryColumn = (props) => {
         </div>
     )
 
-
-    }
-
-
-
-
-
-    
-
-
 }
+
 
