@@ -1,3 +1,55 @@
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
+export default function App() {
+  return (
+    <Router>
+      <div>
+        
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+              <Link to="/users">Users</Link>
+            </li>
+          </ul>
+        </nav>
+
+        {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+        <Switch>
+          <Route path="/game">
+            <Game />
+          </Route>
+          <Route path="/users">
+            <Users />
+          </Route>
+          <Route path="/welcome">
+            <Welcome />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  );
+}
+
+
+
+// ATTENTION:   THE NOTES BELOW MAY BE OUTDATED. READ AT YOUR OWN RISK.
+
+
+
+
 // import React from 'react';
 // import logo from './logo.svg';
 // import { Counter } from './features/counter/Counter';
@@ -26,7 +78,7 @@
 //     3. score
 //     4
 
-       
+
 // 1.  <GameMenu/> (previously called Welcome) renders first, with links to <GameBoard/> and <UserHome/> rendered beneath it
 // 2.  selecting a game in <GameMenu/> will set the GameState (organized into prepardy, doublePrepardy, and finalPrepardy chunks)
 // 3.  clicking "START GAME" will open the <GameBoard/>, which will be populated with clues and categories from GameState
@@ -46,7 +98,7 @@
 
 
 
-    
+
 
 
 
@@ -89,51 +141,3 @@
 // }
 
 // export default App;
-
-
-
-
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-
-export default function App() {
-  return (
-    <Router>
-      <div>
-        
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-          </ul>
-        </nav>
-
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-        <Switch>
-          <Route path="/game">
-            <Game />
-          </Route>
-          <Route path="/users">
-            <Users />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-  );
-}
