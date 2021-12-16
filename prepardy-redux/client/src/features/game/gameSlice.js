@@ -15,24 +15,21 @@ export const gameSlice = createSlice({
     initialState: {
         browseGames: initialGames,
         selectedGame: {},
-        selectedCategories: [],
-        nextGame: {}
+        selectedCategories: []
+        // nextGame: {}
     },
     reducers: {
         setSelectedGame(state, action) {
             state.selectedGame = action.payload.game;
+            state.selectedCategories.push(rounds.p, rounds.dp, rounds.fp); // sorted from first to last category
         },
-        setSelectedCategories(state, action) {
-            if (state.selectedGame !== {}) {
-                const rounds = action.payload.rounds;
-                state.selectedCategories.push(rounds.p, rounds.dp, rounds.fp) // sorted from first to last category
-            }
+        changeBrowseGames(state, action) {
+            state.browseGames = action.payload
         }
     }
 
 });
 
 
-export const { setSelectedGame, setSelectedCategories } = gameSlice.actions;
+export const { setSelectedGame, browseGames, selectedGame, selectedCategories, changeBrowseGames } = gameSlice.actions;
 export default gameSlice.reducer;
-
