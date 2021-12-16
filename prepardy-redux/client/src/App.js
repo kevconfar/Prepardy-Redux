@@ -1,55 +1,3 @@
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-
-export default function App() {
-  return (
-    <Router>
-      <div>
-        
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-          </ul>
-        </nav>
-
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-        <Switch>
-          <Route path="/game">
-            <Game />
-          </Route>
-          <Route path="/users">
-            <Users />
-          </Route>
-          <Route path="/welcome">
-            <Welcome />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-  );
-}
-
-
-
-// ATTENTION:   THE NOTES BELOW MAY BE OUTDATED. READ AT YOUR OWN RISK.
-
-
-
-
 // import React from 'react';
 // import logo from './logo.svg';
 // import { Counter } from './features/counter/Counter';
@@ -78,7 +26,7 @@ export default function App() {
 //     3. score
 //     4
 
-
+       
 // 1.  <GameMenu/> (previously called Welcome) renders first, with links to <GameBoard/> and <UserHome/> rendered beneath it
 // 2.  selecting a game in <GameMenu/> will set the GameState (organized into prepardy, doublePrepardy, and finalPrepardy chunks)
 // 3.  clicking "START GAME" will open the <GameBoard/>, which will be populated with clues and categories from GameState
@@ -98,7 +46,7 @@ export default function App() {
 
 
 
-
+    
 
 
 
@@ -141,3 +89,65 @@ export default function App() {
 // }
 
 // export default App;
+
+
+
+
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
+
+import Welcome from "./pages/Welcome";
+import Gameboard from "./pages/Gameboard";
+import UserHome from "./pages/UserHome";
+import {
+  Col,
+  Row,
+  Container
+  
+} from "react-bootstrap";
+
+export default function App() {
+  return (
+    <Router>
+      <div>
+        <Container className="d-flex justify-content-center">
+        <nav >
+          
+          <Row>
+            <Col>
+              <Link to="/">Home</Link>
+            </Col>
+            <Col>
+              <Link to="/game">Game</Link>
+            </Col>
+            <Col>
+              <Link to="/profile">Profile</Link>
+            </Col>
+          </Row>
+            
+          
+        </nav>
+        </Container>
+
+        {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+        <Routes>
+          <Route path="/game"
+            element={<Gameboard />}>
+          </Route>
+          <Route path="/profile"
+            element={<UserHome />}>
+          </Route>
+          <Route path="/"
+            element={<Welcome />}>
+          </Route>
+        </Routes>
+      </div>
+    </Router>
+  );
+}
