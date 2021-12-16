@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
  
 import { useDispatch, useSelector } from 'react-redux';
 import { selectedGame } from '../game/gameSlice';
-import { setClues } from '../game/cluesSlice';
+import { setCluesState } from '../game/cluesSlice';
 
 export const StartGame = () => {
 
     const dispatch = useDispatch();
 
-    const setCluesState = () => dispatch(setClues(game.gameId)); // Async reducer might be a problem ... 
+    const setClues = () => dispatch(setCluesState(game.gameId)); // Async reducer might be a problem ... 
     
     const game = useSelector(selectedGame);
     const gameIsSelected = (selectedGame !== {}); // True IF a game has been selected, else False
@@ -20,7 +20,7 @@ export const StartGame = () => {
         <Link to="gameboard-url" >
             <Button 
                 disabled={gameIsSelected}
-                onClick={() => setCluesState(game.gameId)}
+                onClick={() => setClues(game.gameId)}
             >  
             START   
             </Button>
