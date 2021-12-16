@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { browseGames, setSelectedCategories, setSelectedGame } from "../game/gameSlice";
 
 import { GameViewer } from "./GameViewer";
+import { StartGame } from "./StartGame";
 
 import { Carousel } from "react-bootstrap";
 
@@ -19,7 +20,8 @@ export const GameBrowser = () => {
                     return (
                         <div>
                             <Carousel.Item>
-                                <GameViewer game={game} />
+                                <h1>Game Viewer</h1>
+                                {/* <GameViewer game={game} /> */}
                             </Carousel.Item>
                             <StartGame game={game} />
                         </div>

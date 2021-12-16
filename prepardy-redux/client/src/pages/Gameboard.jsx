@@ -13,3 +13,10 @@ The following components still need to be written: (all notes below pertain to t
 
 
 */
+import React from "react";
+
+export default function Game() {
+    return (
+        <div>Game PAGE</div>
+    )
+}
