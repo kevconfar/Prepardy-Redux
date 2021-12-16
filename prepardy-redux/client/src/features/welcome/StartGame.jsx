@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectedGame } from '../game/gameSlice';
 import { setCluesState } from '../game/cluesSlice';
+import {
+    Button
+} from "react-bootstrap";
 
 export const StartGame = () => {
 

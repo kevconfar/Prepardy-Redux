@@ -22,7 +22,7 @@ export const GameViewer = (game) => {
         <div className='game-viewer'>
             <h1>{date}</h1>
             <h3>WINNING SCORE {highScore}</h3>
-            <h3></h3>
+            {/* <h3></h3> */}
             <h3>CATEGORIES</h3>
             <ListGroup className='categories-viewer'>
                 {[...p, ...dp, ...fp].map(category => <ListGroup.Item>{category}</ListGroup.Item>)}

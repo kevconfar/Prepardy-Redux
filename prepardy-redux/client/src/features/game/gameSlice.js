@@ -13,7 +13,7 @@ ON THE USE OF COMMENTS IN PREPARDY CODE
 
 
 const initialGames = async () => {
-    const games = await axios('localhost:3000/games/season/37/15'); // 15 random games from season 15
+    const game = await axios('localhost:3000/games/season/37/15'); // 15 random games from season 15
 
     return game; // ATTENTION: We might need to use .json() ... But maybe not (the routes auto-return JSON).
 }
@@ -58,11 +58,11 @@ const gameSlice = createSlice({
             state.browseGames = action.payload;
             state.gamesAreLoading = false;
             state.failedToLoadGames = false;
-        }),
+        })
         builder.addCase(getGamesByUserQuery.pending, (state) => {
             state.gamesAreLoading = true;
             state.failedToLoadGames = false;
-        }),
+        })
         builder.addCase(getGamesByUserQuery.rejected, (state) => {
             state.gamesAreLoading = false;
             state.failedToLoadGames = true;
