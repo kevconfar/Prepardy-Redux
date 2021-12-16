@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+
 
 const cluesSlice = createSlice({
     name: 'clues',
@@ -8,8 +9,12 @@ const cluesSlice = createSlice({
         missedClues: []
     },
     reducers: {
+        // setClues = async (state, action) => {
+        //     const clues = await axios(`localhost:3000/clues/id/${action.payload.gameId}`)
+        //     state.clues.push(clues); // used to initially set the clues
+        // },
         setClues(state, action) {
-            state.clues.push(action.payload); // used to initially set the clues
+            state.clues = action.payload;
         },
         setSelectedClue(state, action) {
             state.selectedClue = action.payload; // when a clue is clicked, it will be assigned to selectedClue
