@@ -1,6 +1,8 @@
 import React from "react";
+import { useSelector, useDispatch } from 'react-redux';
 
-import { setSelectedGame, setSelectedCategories } from "../game/gameSlice";
+import { browseGames, setSelectedGame, setSelectedCategories } from "../game/gameSlice";
+import { setClues } from "../game/cluesSlice";
 
 import {
     Col,
@@ -16,6 +18,10 @@ import {
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function Welcome() {
+
+    const games = useSelector(browseGames); // assigns the 15 randomly fetched games from initialState in gameSlice
+    const dispatch = useDispatch(); // will be used with setClues, setSelectedGame, and setSelectedCategories
+
     return (
         <Container>
             <div id="home" className="content">
@@ -71,7 +77,6 @@ function Welcome() {
 
                                             <Col>
                                                 <ListGroup variant="flush">
-                                                    {}
                                                     <ListGroup.Item> CATEGORY #1</ListGroup.Item>
                                                     <ListGroup.Item> CATEGORY #2</ListGroup.Item>
                                                     <ListGroup.Item> CATEGORY #3 </ListGroup.Item>

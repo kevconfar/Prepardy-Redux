@@ -96,43 +96,57 @@
 import React from "react";
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route,
   Link
 } from "react-router-dom";
+
+import Welcome from "./pages/Welcome";
+import Gameboard from "./pages/Gameboard";
+import UserHome from "./pages/UserHome";
+import {
+  Col,
+  Row,
+  Container
+  
+} from "react-bootstrap";
 
 export default function App() {
   return (
     <Router>
       <div>
-        
-        <nav>
-          <ul>
-            <li>
+        <Container className="d-flex justify-content-center">
+        <nav >
+          
+          <Row>
+            <Col>
               <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-          </ul>
+            </Col>
+            <Col>
+              <Link to="/game">Game</Link>
+            </Col>
+            <Col>
+              <Link to="/profile">Profile</Link>
+            </Col>
+          </Row>
+            
+          
         </nav>
+        </Container>
 
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
-        <Switch>
-          <Route path="/game">
-            <Game />
+        <Routes>
+          <Route path="/game"
+            element={<Gameboard />}>
           </Route>
-          <Route path="/users">
-            <Users />
+          <Route path="/profile"
+            element={<UserHome />}>
           </Route>
-          <Route path="/">
-            <Home />
+          <Route path="/"
+            element={<Welcome />}>
           </Route>
-        </Switch>
+        </Routes>
       </div>
     </Router>
   );
