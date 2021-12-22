@@ -8,7 +8,7 @@ import {
 } from "react-bootstrap";
 
 
-export const GameViewer = (game) => {
+const GameViewer = (game) => {
 
 
     const { p, dp, fp } = game.rounds;
@@ -31,3 +31,5 @@ export const GameViewer = (game) => {
     )
 
 }
+
+export default GameViewer;

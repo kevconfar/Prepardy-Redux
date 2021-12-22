@@ -1,43 +1,42 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+import { useEffect } from "react";
+
+import { testGames, testGame } from "../../testingData/testGames";
+
+import axios from 'axios';
+// const axios = require('axios');
 
 
-/*
-ON THE USE OF COMMENTS IN PREPARDY CODE
+// export const getGamesByUserQuery = createAsyncThunk(  // NOTE:   will pull games up by Season, Category, etc.
+//     'games/getGamesByUserQuery',
+//     async (searchObj) => {
+//         const { searchType, searchTerm } = searchObj; 
 
-    - comments beginning with "ATTENTION" are added to potentially problematic code
+//         // NOTE:  searchType = "season"||"category"
+//         // NOTE:  searchTerm = season number || search string
+//         const games = await axios(`localhost:3000/games/${searchType}/${searchTerm}`);
+//         const json = await games.json();
+        
+//         return json; // ATTENTION: We might need to use .json() ... But maybe not (the routes auto-return JSON).
+//     }
+// );
 
-    - comments beginning with "NOTE" are used to explain code
-
-*/
-
-
-const initialGames = async () => {
-    const game = await axios('localhost:3000/games/season/37/15'); // 15 random games from season 15
-
-    return game; // ATTENTION: We might need to use .json() ... But maybe not (the routes auto-return JSON).
-}
-
-
-
-export const getGamesByUserQuery = createAsyncThunk(  // NOTE:   will pull games up by Season, Category, etc.
-    'games/getGamesByUserQuery',
+export const getNewGames = createAsyncThunk(
+    'games/getNewGames',
     async (searchObj) => {
-        const { searchType, searchTerm } = searchObj; 
+        const { searchType, searchTerm } = searchObj;
+        const result = await axios(`http://localhost:3000/games/${searchType}/${searchTerm}/10`);
 
-        // NOTE:  searchType = "season"||"category"
-        // NOTE:  searchTerm = season number || search string
-        const games = await axios(`localhost:3000/games/${searchType}/${searchTerm}`);
-        return games; // ATTENTION: We might need to use .json() ... But maybe not (the routes auto-return JSON).
+        return result.data;
     }
-);
-
+)
 
 const gameSlice = createSlice({
     name: 'games',
     initialState: {
-        browseGames: initialGames,
-        selectedGame: {},
+        allGames: testGames,
+        selectedGame: testGame,
         selectedCategories: [],
         gamesAreLoading: false, // NOTE:  gamesAreLoading & failedToLoadGames were added for getGamesByCategory's lifecycle
         failedToLoadGames: false //       will handle rejection/pending/fulfilled actions
@@ -48,30 +47,47 @@ const gameSlice = createSlice({
 
             state.selectedGame = action.payload;
             state.selectedCategories.push(p, dp, fp); // NOTE:  sorted from first category -> last category
-        },
-        changeBrowseGames(state, action) {
-            state.browseGames = action.payload;
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(getGamesByUserQuery.fulfilled, (state, action) => {
-            state.browseGames = action.payload;
+        builder.addCase(getNewGames.fulfilled, (state, action) => {
+            state.allGames = action.payload;
             state.gamesAreLoading = false;
             state.failedToLoadGames = false;
         })
-        builder.addCase(getGamesByUserQuery.pending, (state) => {
+        builder.addCase(getNewGames.pending, (state) => {
             state.gamesAreLoading = true;
             state.failedToLoadGames = false;
         })
-        builder.addCase(getGamesByUserQuery.rejected, (state) => {
+        builder.addCase(getNewGames.rejected, (state) => {
             state.gamesAreLoading = false;
             state.failedToLoadGames = true;
         })
+
     }
+    // extraReducers: (builder) => {
+    //     builder.addCase(getGamesByUserQuery.fulfilled, (state, action) => {
+    //         state.browseGames = action.payload;
+    //         state.gamesAreLoading = false;
+    //         state.failedToLoadGames = false;
+    //     })
+    //     builder.addCase(getGamesByUserQuery.pending, (state) => {
+    //         state.gamesAreLoading = true;
+    //         state.failedToLoadGames = false;
+    //     })
+    //     builder.addCase(getGamesByUserQuery.rejected, (state) => {
+    //         state.gamesAreLoading = false;
+    //         state.failedToLoadGames = true;
+    //     })
+    // }
 });
 
 
-export const { setSelectedGame, browseGames, selectedGame, selectedCategories, changeBrowseGames } = gameSlice.actions;
+export const selectGame = (state) => state.games.selectedGame;
+export const selectAllGames = (state) => state.games.allGames;
+
+
+export const { setSelectedGame } = gameSlice.actions;
 export default gameSlice.reducer;
 
 
