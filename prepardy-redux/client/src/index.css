@@ -39,6 +39,13 @@ h1 {
   color: gold;
 }
 
+.kevin {
+  /* font-weight: bold; */
+  font-family: "Wendy One", sans-serif;
+  text-shadow: var(--text-shadow);
+  color: gold;
+}
+
 body {
   font-family: "ITC Korinna";
   color: white;
@@ -184,6 +191,15 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 1.2em;
+}
+
+/* ADDED BY KEVIN*/
+.categoryViewLabel {
+  color: gold;
+  justify-content: center;
+
+  text-shadow: 3px 3px black;
+  font-size: 1.5em;
 }
 
 #question {

@@ -1,36 +1,39 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
  
 import { useDispatch, useSelector } from 'react-redux';
-import { selectedGame } from '../game/gameSlice';
-import { setCluesState } from '../game/cluesSlice';
+import { selectGame } from '../game/gameSlice';
+// import { setCluesState } from '../game/cluesSlice';
+
 import {
     Button
 } from "react-bootstrap";
 
-export const StartGame = () => {
+const StartGame = () => {
 
     const dispatch = useDispatch();
 
-    const setClues = () => dispatch(setCluesState(game.gameId)); // Async reducer might be a problem ... 
+    // const setClues = (x) => dispatch(setCluesState(x.gameId)); // Async reducer might be a problem ... 
     
-    const game = useSelector(selectedGame);
-    const gameIsSelected = (selectedGame !== {}); // True IF a game has been selected, else False
+    const game = useSelector(selectGame);
+    const gameIsSelected = (game === {}); // True IF a game has been selected, else False
 
     return (
 
-        <Link to="gameboard-url" >
+        // <Link to="/game" >
             <Button 
                 disabled={gameIsSelected}
-                onClick={() => setClues(game.gameId)}
+                // onClick={() => setClues(game.gameId)}
             >  
             START   
             </Button>
-        </Link>
+        // </Link>
     )
 
 }
+
+export default StartGame;
 
 // <Carousel>
 //     <Carousel.Item>

@@ -1,19 +1,28 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const setClueState = createAsyncThunk(
-    'clues/setClueState',
-    async (gameID) => {
-        const clues = [
-            {clue1: "clue 1"},
-            {clue2: "clue 2"},
-            {clue3: "clue 3"}
-        
-        ];
-        // await axios(`localhost:300/clues/id/${gameID}`);
-        return clues; // ATTENTION: Might require .json() ... Maybe not (the backend routes use JSON).
+import axios from 'axios';
 
-    }
-)
+
+
+// export const setCluesState = createAsyncThunk(
+//     'clues/setClueState',
+//     async (gameID) => {
+//         const clues = await axios.get(`http://localhost:3000/clues/id/${gameID}`)
+        
+//         return clues.data;
+//         // await axios(`localhost:300/clues/id/${gameID}`);
+//         // return json; // ATTENTION: Might require .json() ... Maybe not (the backend routes use JSON).
+
+//     }
+// )
+
+const initialClues = async () => {
+
+    const clues = await axios.get('localhost:3000/clues/id/6666')
+    return clues;
+}
+
+
 
 const cluesSlice = createSlice({
     name: 'clues',
@@ -43,25 +52,31 @@ const cluesSlice = createSlice({
             state.correctClues.push(action.payload);
             state.clues = state.clues.splice(index, 1);
         }
-    },
-    extraReducers: (builder) => {
-        builder.addCase(setCluesState.fulfilled, (state, action) => {
-            state.clues.push(action.payload);
-            state.cluesAreLoading = false;
-            state.clesFailedToLoad = false;
-        })
-        builder.addCase(setCluesState.pending, (state) => {
-            state.cluesAreLoading = true;
-            state.clesFailedToLoad = false;
-        })
-        builder.addCase(setCluesState.rejected, (state) => {
-            state.cluesAreLoading = false;
-            state.clesFailedToLoad = true;
-        })
-    }
+    }//,
+    // extraReducers: (builder) => {
+    //     builder.addCase(setCluesState.fulfilled, (state, action) => {
+    //         state.clues.push(action.payload);
+    //         state.cluesAreLoading = false;
+    //         state.clesFailedToLoad = false;
+    //     })
+    //     builder.addCase(setCluesState.pending, (state) => {
+    //         state.cluesAreLoading = true;
+    //         state.clesFailedToLoad = false;
+    //     })
+    //     builder.addCase(setCluesState.rejected, (state) => {
+    //         state.cluesAreLoading = false;
+    //         state.clesFailedToLoad = true;
+    //     })
+    // }
 });
 
-export const { setCluesState, setSelectedClue, addMissedClue } = cluesSlice.actions;
+
+export const selectAllClues = (state) => state.clues.selectedGame;
+
+
+
+export const { setSelectedClue, addMissedClue } = cluesSlice.actions;
 export default cluesSlice.reducer;
+
 
 
