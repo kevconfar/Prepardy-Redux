@@ -1,38 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useDispatch } from 'react-redux';
-import { changeBrowseGames } from '../game/gameSlice';
 
-const SearchGames = () => {
+import { getNewGames } from '../game/gameSlice';
 
-    
-    /* 
-    allows users to search through the database for clues by category, season, etc.
-    
-    ROUTES TO USE: 
-        -  `localhost:3000/games/category/${searchTerm}`
-        -  `localhost:3000/games/season/${searchTerm}`
+import { Button, Col, Row, Container } from 'react-bootstrap';
 
-    */
 
-    const dispatch = useDispatch();
+function SearchGames() {
+
+    const [search, setSearch] = useState("");
+    const [searchType, setSearchType] = useState("");
+
+    const dispatch = useDispatch();    
+
+    const handleSearchType = (type) => {
+        setSearchType(type)
+    }
+    const handleSubmit = () => {
+        dispatch(getNewGames({searchTerm: search, searchType: searchType}))
+    }
 
     return (
-        <div className="search-games">
-            
-            <FloatingLabel
-                controlId="floatingInput"
-                label="Search By Category"
-                className="mb-3"
-            >
-                <Form.Control type="string" placeholder="History" onChange={ () => } />
-            </FloatingLabel>
-            <FloatingLabel controlId="floatingPassword" label="Search By Season">
-                <Form.Control type="string" placeholder="37" />
-            </FloatingLabel>
-       
-
-
-        </div>
+        <Container>
+            <div className="search-games">
+                <Col>
+                        <Button onClick={() => handleSearchType("season")}>SEASON</Button>
+                        <Button onClick={() => handleSearchType("category")}>CATEGORY</Button>
+                    <input onChange={(e) => setSearch(e.target.value)} />
+                    <br></br><br></br>
+                    <Button onClick={handleSubmit}>SEARCH</Button>
+                </Col>            
+            </div>
+        </Container>
     )
 }
+
+export default SearchGames;

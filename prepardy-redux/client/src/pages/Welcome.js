@@ -1,26 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
-    Container
+    Container,
+    Carousel
 } from "react-bootstrap";
+import { useSelector } from 'react-redux';
+
 import StartGame from "../features/welcome/StartGame";
-import GameBrowser from "../features/welcome/GameBrowser";
+// import GameBrowser from "../features/welcome/GameBrowser";
+import { selectAllGames } from '../features/game/gameSlice';
+import GameViewer from '../features/welcome/GameViewer';
 
-import axios from 'axios';
+export default function Welcome() {
 
-
-import { setSelectedGame } from '../features/game/gameSlice';
-import { useSelector, useDispatch } from 'react-redux';
-// import { selectAllGames } from '../features/game/gameSlice';
-/* 
-
-We will import <GameBrowser /> and <StartGame />.
-
-I want to create a search function that allows that allows the user to change the browseGames state to games matching their search.
-e.g. If you want type "Roman", it pulls up all Games with "Roman" in their Categories.
-This might be a feature to integrate later.
-
-*/
-function Welcome() {
+    const games = useSelector(selectAllGames);
 
     return (
         <div>
@@ -30,14 +22,22 @@ function Welcome() {
                         <h1 className="d-flex justify-content-center">Welcome to PREPARDY!</h1>
                     </span>
                 </div>
-                <GameBrowser />
+
+                <Carousel>
+                    <Carousel.Item>{games.map(game => <GameViewer />)}</Carousel.Item>    
+                </Carousel>
                 <StartGame />
                 
             </Container>
         </div>
     )
-}
 
-export default Welcome;
+    // return (
+    //     <div>
+    //         <GameBrowser />
+    //         <h1>WELCOME PAGE! WELCOME PAGE!</h1>
+    //     </div>
+    // )
+}
 
     

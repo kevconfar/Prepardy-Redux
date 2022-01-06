@@ -15,8 +15,22 @@ The following components still need to be written: (all notes below pertain to t
 */
 import React from "react";
 
+import { selectAllClues } from "../features/game/cluesSlice";
+import { useSelector } from "react-redux";
+
 export default function Game() {
+
+    const clues = useSelector(selectAllClues);
+
     return (
-        <div>Game PAGE</div>
+        <div>
+            
+            <h1>Game PAGE</h1>
+            <ul>
+                {clues.map((x) => <li>{x.question}</li>)}
+            </ul>
+            
+        </div>
+
     )
 }
