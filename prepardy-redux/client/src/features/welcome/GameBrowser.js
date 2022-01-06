@@ -6,26 +6,22 @@ import { selectAllGames } from "../game/gameSlice";
 import GameViewer from "./GameViewer";
 import { Carousel } from "react-bootstrap";
 
-const GameBrowser = () => {
+function GameBrowser() {
 
     const games = useSelector(selectAllGames);
 
-    console.log(games);
 
     return (
         <div className="games-browser" >
-            {/* {games.map(game => <GameViewer game={game}></GameViewer>)} */}
-            <Carousel>
+
                 {/* {games.map(game => <Carousel.Item><GameViewer game={game} /></Carousel.Item>)} */}
                 {games.map(game => {
                     return (
                             <Carousel.Item>
-                                {/* <h1>Game Viewer</h1> */}
                                 <GameViewer game={game} />
                             </Carousel.Item>
                     );
                 })}
-            </Carousel>
         </div>
     )
 }

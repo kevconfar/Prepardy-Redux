@@ -12,7 +12,7 @@ import UserHome from "./pages/UserHome";
 
 import Tester from "./pages/Tester.js"; // THIS IS THE TEST FILE I CREATED TO FIX THE MONGO --> REDUX FLOW
 
-import FetchGames from "./features/mongoFetch/fetchGames";
+import Answer from "./features/answer/Answer.js";
 
 import {
   Col,
@@ -46,8 +46,7 @@ function App() {
           <Route path="/game" element={<Gameboard/>} />
           <Route path="/profile" element={<UserHome/>} />
           <Route path="/" element={<Welcome/>} />
-          <Route path="/testgames" element={<FetchGames />} />
-
+          <Route path="/answer" element={<Answer />} />
         </Routes>
       </div>
     </Router>

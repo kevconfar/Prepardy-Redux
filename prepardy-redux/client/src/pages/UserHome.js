@@ -9,9 +9,12 @@ Topics and Categories the user frequently misses.
 */
 import React from "react";
 
+import SearchGames from "../features/welcome/SearchGames";
+
 export default function Profile() {
     return (
         <div>
+            <SearchGames />
             <h1>PROFILE PAGE</h1>
         </div>
     )

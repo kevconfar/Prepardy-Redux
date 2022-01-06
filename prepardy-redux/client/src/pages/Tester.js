@@ -13,6 +13,8 @@ import { selectGame, getNewGames, selectAllGames } from "../features/game/gameSl
 
 import TestGameViewer from "../features/welcome/TestGameViewer";
 
+import SearchGames from "../features/welcome/SearchGames";
+
 
 export default function Tester() {
 
@@ -32,10 +34,12 @@ export default function Tester() {
 
     return (
         <Container>
+            
             <br></br>
             <h1 className="d-flex justify-content-center">Welcome to PREPARDY!</h1>
             <br></br><br></br>
-    
+            <SearchGames/>
+            <br></br><br></br>
             <Carousel className="d-flex h-100 align-items-center justify-content-center">
                 {/* {games.map(x => <Carousel.Item><Carousel.Caption><TestGameViewer game={x} /></Carousel.Caption></Carousel.Item>)} */}
                 {/* {games.map(x => <TestGameViewer game={x} />)} */}
@@ -56,6 +60,8 @@ export default function Tester() {
 
             <br></br><br></br><br></br>
             <button onClick={handleClick}>CLICK</button>
+
+     
         </Container>
     )
 
