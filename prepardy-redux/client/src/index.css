@@ -14,7 +14,7 @@
 }
 
 :root {
-  --numCategories: 5;
+  --numCategories: 6;
   --blue: linear-gradient(180deg, #0120cb 0%, #011ba9 100%);
   --yellow: #ffe817;
   --green: #90ff7e;

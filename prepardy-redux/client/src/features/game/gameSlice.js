@@ -37,16 +37,15 @@ const gameSlice = createSlice({
     initialState: {
         allGames: testGames,
         selectedGame: testGame,
-        selectedCategories: [],
+        // selectedCategories: [],
         gamesAreLoading: false, // NOTE:  gamesAreLoading & failedToLoadGames were added for getGamesByCategory's lifecycle
         failedToLoadGames: false //       will handle rejection/pending/fulfilled actions
     },
     reducers: {
         setSelectedGame(state, action) {
-            const { p, dp, fp } = action.payload.rounds; // NOTE:  destructures rounds, allowing easy access to all categories
-
+            // const { p, dp, fp } = action.payload.rounds; // NOTE:  destructures rounds, allowing easy access to all categories
             state.selectedGame = action.payload;
-            state.selectedCategories.push(p, dp, fp); // NOTE:  sorted from first category -> last category
+            // state.selectedCategories.push(p, dp, fp); // NOTE:  sorted from first category -> last category
         }
     },
     extraReducers: (builder) => {
@@ -86,6 +85,7 @@ const gameSlice = createSlice({
 export const selectGame = (state) => state.games.selectedGame;
 export const selectAllGames = (state) => state.games.allGames;
 
+export const selectCategories = (state) => state.games.selectedGame.rounds;
 
 export const { setSelectedGame } = gameSlice.actions;
 export default gameSlice.reducer;

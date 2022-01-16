@@ -4,11 +4,16 @@ import axios from 'axios';
 
 import { testClues } from "../../testingData/testClues";
 
+import { selectGame } from "./gameSlice";
+
+
+
+
 
 export const setCluesState = createAsyncThunk(
     'clues/setCluesState',
     async (obj) => {
-        const id = obj.gameId
+        const id = obj.gameID
 
         const clues = await axios(`http://localhost:3000/clues/id/${id}`);
         return clues.data
@@ -16,11 +21,37 @@ export const setCluesState = createAsyncThunk(
     }
 )
 
+// export const setCluesState = createAsyncThunk(
+//     'clues/setCluesState',
+//     async (obj) => {
+//         const { gameID, categories } = obj;
+//         const result = await axios(`http://localhost:3000/clues/id/${gameID}`);
+//         const clues = result.data;
+
+//         const output = { p: [], dp: [], fp: []}
+//         // const cluesByCat = (input) => clues.filter((x) => x.category === input).map((x) => {x.question, x.value, x.id, x.answer})
+        
+//         categories.each((key, values) => {
+//             output[key] = []
+//             values.each((title) => {
+//                 output[key][title] = clues.filter((x) => x.category === title);
+//             })
+//         })
+
+//         return output;
+//         // return clues.data
+
+//     }
+// )
+
+
+
 const cluesSlice = createSlice({
     name: 'clues',
     initialState: {
         selectedClue: {}, // may remove later
-        clues: testClues, // changed from empty array for testing purposes
+        // clues: {}, // changed from empty array for testing purposes
+        clues: testClues,
         incorrectClues: [],
         correctClues: [],
         cluesAreLoading: false, 
@@ -43,7 +74,7 @@ const cluesSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(setCluesState.fulfilled, (state, action) => {
-            state.clues.push(action.payload);
+            state.clues = action.payload;
             state.cluesAreLoading = false;
             state.clesFailedToLoad = false;
         })
@@ -59,7 +90,14 @@ const cluesSlice = createSlice({
 });
 
 
+export const selectCorrectClues = (state) => state.clues.correctClues;
+export const selectIncorrectClues = (state) => state.clues.incorrectClues;
 export const selectAllClues = (state) => state.clues.clues;
+export const selectSelectedClue = (state) => state.clues.selectedClue;
+
+export const selectCluesByCategory = (state, category) => state.clues.allClues.filter((x) => x.category === category);
+
+export const numberOfAnsweredClues = (state) => state.clues.incorrectClues.length + state.clues.correctClues.length;
 
 export const { setSelectedClue, addIncorrectClue, addCorrectClue } = cluesSlice.actions;
 export default cluesSlice.reducer;
