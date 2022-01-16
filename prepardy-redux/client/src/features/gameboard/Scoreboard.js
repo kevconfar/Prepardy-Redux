@@ -10,9 +10,11 @@ const Scoreboard = () => {
 
     return (
    
-        <div id="scoreboard">
-            <p className="playerName">Score</p>${userScore}
-        </div>
+        <span className="score-count">
+            <div id="scoreboard">
+                <p className="playerName">Score</p>${userScore}
+            </div>
+        </span>
          
 
     )

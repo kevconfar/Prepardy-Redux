@@ -18,7 +18,7 @@ const Category = ({title}) => {
     const categoryClues = clues.filter((clue) => clue.category === title);
 
     return (
-        <div className="category">
+        <div className="category"> 
             <div className="column">
                 <div className="header">{title}</div>
                 <ul>

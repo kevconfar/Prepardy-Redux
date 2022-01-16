@@ -33,23 +33,17 @@ body {
 }
 
 h1 {
-  /* font-weight: bold; */
+  
   font-family: "Wendy One", sans-serif;
   text-shadow: var(--text-shadow);
   color: gold;
 }
 
-.kevin {
-  /* font-weight: bold; */
-  font-family: "Wendy One", sans-serif;
-  text-shadow: var(--text-shadow);
-  color: gold;
-}
 
 body {
   font-family: "ITC Korinna";
   color: white;
-  font-size: 2vw;
+  /* font-size: 2vw; */
   text-align: center;
   padding: 1em;
   /* background: linear-gradient(180deg, #2e2e3a 0%, #0c0c2c 100%); */
@@ -76,8 +70,9 @@ body {
 
 .top-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  margin-top: 15px;
   text-shadow: var(--text-shadow);
 }
 
