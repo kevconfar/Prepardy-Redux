@@ -25,6 +25,26 @@ exports.getGamesBySeason = async (req, res) => {   // GETS ALL GAMES IN A SEASON
 //     const gameB = await Games.findOne({})
 // }
 
+
+exports.getGamesByCategory = async (req, res) => {
+
+    try {
+
+        const term = " " + req.params.category + " ";
+
+        const games = await Games.find({ categories: { $in: {$regex: term, $options: "i"} } });
+        // const games = await Games.find({ categories: { $elemMatch: { $eq: { $regex: term, $options: "i" } } } });
+
+
+        res.status(200).json(games);
+
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+
+
+}
+
 exports.getNumberOfGamesBySeason = async (req, res) => {   // GETS 10 GAMES
 
     try {

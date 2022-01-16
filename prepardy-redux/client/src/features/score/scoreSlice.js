@@ -1,6 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
+
+
+/* Other Stats To Possible Track:
+    - $ in Bank before each daily double = [ $3000, $7000, $1 ]
+
+
+*/
+
 const scoreSlice = createSlice({
     name: 'score',
     initialState: {
@@ -8,13 +16,15 @@ const scoreSlice = createSlice({
     },
     reducers: {
         incrementScore(state, action) {
-            state.score += action.type.points;
+            state.score += action.payload;
         },
         decrementScore(state, action) {
-            state.score -= action.type.points;
+            state.score -= action.payload;
         }
     }
 });
+
+export const score = (state) => state.score.score;
 
 export const { incrementScore, decrementScore } = scoreSlice.actions;
 export default scoreSlice.reducer;
