@@ -25,12 +25,25 @@ const Category = ({title}) => {
                     {categoryClues.map((clue) => {
                         return (
                             <li>
+                                {incorrect.includes(clue.id) || correct.includes(clue.id) ? (
+                                    <div className="clueValue"></div>
+                                ) : (
+                                    <Clue
+                                        clueObj={clue}
+                                    />
+                                )}
+                            </li>
+                        );
+                    })}
+                    {/* {categoryClues.map((clue) => {
+                        return (
+                            <li>
                                 <Clue
                                     clueObj={clue}
                                 />
                             </li>
                         );
-                    })}
+                    })} */}
                 </ul>
             </div>
         </div>

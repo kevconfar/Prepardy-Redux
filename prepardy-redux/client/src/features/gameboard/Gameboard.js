@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 import { useSelector } from 'react-redux';
 
-import { selectSelectedClue, numberOfAnsweredClues } from '../game/cluesSlice';
+import { selectSelectedClue } from '../game/cluesSlice';
+import { answeredQuestions } from '../game/gameplaySlice';
 import { selectGame } from '../game/gameSlice';
 
 import Categories from './Categories';
@@ -15,19 +16,36 @@ const Gameboard = () => {
 
     const [categories, setCategories] = useState(p);
 
-    const selectedClue = useSelector(selectSelectedClue);
-    const isClueSelected = (selectedClue !== {});
-    
-    const answered = useSelector(numberOfAnsweredClues);
+    // useEffect(() => {
 
-    if (answered === 30) setCategories(dp);
-    if (answered === 60) setCategories(fp);
 
-    return (
+    // }, [categories])
+
+
+    const answered = useSelector(answeredQuestions);
+
+    // if (answered === 30) setCategories(dp);
+    // if (answered === 60) setCategories(fp);
+
+    if (answered < 30) return (
+        <Categories categories={p} />
+    )
+    if (answered >= 30 && answered < 60) return (
+        <Categories categories={dp} />
+    )
+    if (answered === 60) return (
         <div>
-            <Categories categories={categories} />
+            <h1>FINAL PREPARDY</h1>
+            <h2>{fp[0]}</h2>
         </div>
     )
+
+
+    // return (
+    //     <div>
+    //         <Categories categories={categories} />
+    //     </div>
+    // )
     
     // return (
     //     <div id={isClueSelected ? "question" : "gameboard"}>
