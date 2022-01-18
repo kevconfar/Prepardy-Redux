@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import { setIsClueSelected } from '../game/gameplaySlice';
-import { selectSelectedClue, setSelectedClue } from '../game/cluesSlice';
+import { setIsClueSelected, incrementAnsweredQuestions } from '../game/gameplaySlice';
+import { selectSelectedClue, setSelectedClue, addIncorrectClue, addCorrectClue } from '../game/cluesSlice';
 
 import { decrementScore, incrementScore } from '../score/scoreSlice';
 
@@ -17,43 +17,38 @@ const Response = () => {
     const [guess, setGuess] = useState(""); // STATE AND HANDLERS FOR USER RESPONSE
     const [submitGuess, setSubmitGuess] = useState(false);
     const handleGuess = (e) => setGuess(e.target.value);
-    const submitAnswer = () => setSubmitGuess(true);
+    const submitAnswer = (e) => {
+        if (e.key === 'Enter') setSubmitGuess(true);
+    }
 
-    const [bet, setBet] = useState(clue.value); // STATE AND HANDLERS FOR DAILYDOUBLE BETS
+    const [bet, setBet] = useState(0); // STATE AND HANDLERS FOR DAILYDOUBLE BETS
     const [submitBet, setSubmitBet] = useState(false);
     const handleBet = (e) => setBet(e.target.value);
     const submitWager = () => setSubmitBet(true);
 
     const isDailyDouble = (clue.dd === true) // BOOLEAN THAT CHECKS IF CLUE IS DAILY DOUBLE
-    const dailyDouble = () => { // THE JSX USED IF CLUE.DD === TRUE
-        return (
-            <div className="daily-double">
-                <h1>DAILY DOUBLE!</h1>
-                <h3>How much would you like to wager?</h3>
-                <input onChange={handleBet} value={bet} type="number"/>
-                <button onClick={submitWager}>SUBMIT</button>
-            </div>
-        )
-    }
 
     const checkAnswer = () => { // COMPARES USER GUESS TO CLUE.ANSWER
         var g = guess.toLowerCase();
         var a = clue.answer.toLowerCase();
 
-        // return (a === g) ? true : false;
+        const wager = (isDailyDouble) ? bet / 2 : clue.value / 2;
 
-        if (a === g || a === "the " + g || a === g + "s" || a === "a " + g) {
-            dispatch(incrementScore(parseInt(bet)));
+        if (a === g || a === "the " + g || a === g + "s" || a === "a " + g || a === "an " + g) {
+            dispatch(incrementScore(wager))
+            dispatch(addCorrectClue(clue.id));
             return true;
         }
         if (a !== g) {
-            dispatch(decrementScore(parseInt(bet)));
+            dispatch(decrementScore(wager));
+            dispatch(addIncorrectClue(clue.id));
             return false;
         }
         
     }
 
-    const backToGame = () => { // CHANGES isClueSelected to FALSE and OPENS GAMEBOARD 
+    const backToGame = (e) => { // CHANGES isClueSelected to FALSE and OPENS GAMEBOARD
+        dispatch(incrementAnsweredQuestions()); 
         dispatch(setIsClueSelected());
         dispatch(setSelectedClue({}));
     }
@@ -69,26 +64,31 @@ const Response = () => {
     }
     const handleAssist = () => (assist) ? setAssist(false) : setAssist(true);
 
-    return (
+    if (isDailyDouble && !submitBet) return (
+        <div className="daily-double">
+            <h1>DAILY DOUBLE!</h1>
+            <h3>How much would you like to wager?</h3>
+            <input onChange={handleBet} value={bet} type="number" />
+            <button onClick={submitWager}>SUBMIT</button>
+        </div>
+    )
+    else return (
         <div id="question">
    
             {!submitGuess ? (
                 <div>
                     <p>{clue.question}</p>
-                    <br></br><br></br>
-
+    
                     <br></br>
-                    <input onChange={handleGuess} value={guess} placeholder="Answer Here" />
+                    <input onKeyUp={submitAnswer} onChange={handleGuess} value={guess} placeholder="Answer Here" />
                     <br></br><br></br>
-                    <button onClick={submitAnswer}>ANSWER</button>
+                    {/* <button onClick={submitAnswer}>ANSWER</button> */}
                 </div>
             ) : (
                 <div>
                     {checkAnswer() ? (
                         <div>
                             <h1>CORRECT!</h1>
-                            <h2>Answer: {clue.answer}</h2>
-                            <h2>Guess: {guess}</h2>
                         </div>
                     ) : (
                         <div>
