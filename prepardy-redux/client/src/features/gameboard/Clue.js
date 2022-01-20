@@ -14,7 +14,7 @@ const Clue = ({clueObj}) => {
     const dispatch = useDispatch();
 
     const handleClick = () => {
-        alert(`${clueObj.question}`);
+        // alert(`${clueObj.question}`);
         dispatch(setSelectedClue(clueObj));
         dispatch(setIsClueSelected());
 

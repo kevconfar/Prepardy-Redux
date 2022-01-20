@@ -76,15 +76,15 @@ const cluesSlice = createSlice({
         builder.addCase(setCluesState.fulfilled, (state, action) => {
             state.clues = action.payload;
             state.cluesAreLoading = false;
-            state.clesFailedToLoad = false;
+            state.cluesFailedToLoad = false;
         })
         builder.addCase(setCluesState.pending, (state) => {
             state.cluesAreLoading = true;
-            state.clesFailedToLoad = false;
+            state.cluesFailedToLoad = false;
         })
         builder.addCase(setCluesState.rejected, (state) => {
             state.cluesAreLoading = false;
-            state.clesFailedToLoad = true;
+            state.cluesFailedToLoad = true;
         })
     }
 });
