@@ -6,17 +6,20 @@ import { setSelectedClue, selectSelectedClue } from "../game/cluesSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 import { setIsClueSelected } from '../game/gameplaySlice';
-
-
+import { selectCorrectClues, selectIncorrectClues } from "../game/cluesSlice";
 
 const Clue = ({clueObj}) => { 
 
     const dispatch = useDispatch();
+    const incorrect = useSelector(selectIncorrectClues);
+    const correct = useSelector(selectCorrectClues);
 
     const handleClick = () => {
         // alert(`${clueObj.question}`);
+
         dispatch(setSelectedClue(clueObj));
         dispatch(setIsClueSelected());
+        // clueObj.played = true
 
     }
 

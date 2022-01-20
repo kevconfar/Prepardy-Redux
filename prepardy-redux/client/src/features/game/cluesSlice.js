@@ -59,17 +59,17 @@ const cluesSlice = createSlice({
     },
     reducers: {
         setSelectedClue(state, action) {
-            state.selectedClue = action.payload; // NOTE:  when a clue is clicked, it will be assigned to selectedClue
-        },                                       // ATTENTION:  this MIGHT be unnecessary
+            state.selectedClue = action.payload;
+        },                                      
         addIncorrectClue(state, action) {
-            const index = state.clues.indexOf(action.payload);  
+            // const index = state.clues.indexOf(action.payload);  
             state.incorrectClues.push(action.payload); // NOTE:  missed clues are added to the incorrectClues state
-            state.clues = state.clues.splice(index, 1); // NOTE:   missed clues are removed from the Clues state
+            // state.clues = state.clues.splice(index, 1); // NOTE:   missed clues are removed from the Clues state
         },
         addCorrectClue(state, action) {
-            const index = state.clues.indexOf(action.payload);
+            // const index = state.clues.indexOf(action.payload);
             state.correctClues.push(action.payload); // NOTE:  correct clues are added to the correctClues state
-            state.clues = state.clues.splice(index, 1); // NOTE:  correct clues are removed from the Clues state
+            // state.clues = state.clues.splice(index, 1); // NOTE:  correct clues are removed from the Clues state
         }
     },
     extraReducers: (builder) => {
