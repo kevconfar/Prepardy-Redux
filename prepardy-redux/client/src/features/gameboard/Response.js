@@ -6,6 +6,8 @@ import { setIsClueSelected, incrementAnsweredQuestions } from '../game/gameplayS
 import { selectSelectedClue, setSelectedClue, addIncorrectClue, addCorrectClue } from '../game/cluesSlice';
 
 import { decrementScore, incrementScore } from '../score/scoreSlice';
+import { Container, Accordion, Button, Card, Col } from 'react-bootstrap';
+import Hint from './Hint';
 
 const Response = () => {
 
@@ -13,6 +15,7 @@ const Response = () => {
     const dispatch = useDispatch();
 
     const [assist, setAssist] = useState(false);
+    
 
     const [guess, setGuess] = useState(""); // STATE AND HANDLERS FOR USER RESPONSE
     const [submitGuess, setSubmitGuess] = useState(false);
@@ -53,16 +56,20 @@ const Response = () => {
         dispatch(setSelectedClue({}));
     }
 
-    const assistMode = () => {
-        const arr = clue.answer.split(" ");
-        const output = []
+    // const assistMode = () => {
+    //     const arr = clue.answer.split(" ");
+    //     const output = []
 
-        const line = "___ "
-        arr.each((x) => output.push(line * x.length));
+    //     const line = "___ "
+    //     arr.each((x) => output.push(line * x.length));
         
-        return <p>{output.join('  ')}</p>
-    }
-    const handleAssist = () => (assist) ? setAssist(false) : setAssist(true);
+    //     return <p>{output.join('  ')}</p>
+    // }
+    // const handleAssist = () => (assist) ? setAssist(false) : setAssist(true);
+
+
+    return (
+        <div id="response" className='expanded-card'>
 
     if (isDailyDouble && !submitBet) return (
         <div className="daily-double">
@@ -74,15 +81,34 @@ const Response = () => {
     )
     else return (
         <div id="question">
+
    
             {!submitGuess ? (
                 <div>
                     <p>{clue.question}</p>
+
+                
+
+                    <div style={{display: 'flex', justifyContent: 'center'}}>
+                    <input  onChange={handleGuess} value={guess} placeholder="Answer Here" />
+                
+                    {/* <br></br> */}
+                    <button onClick={submitAnswer}>ANSWER</button>
+                    <br/><br/>
+                    </div>
+                    <br/><br/>
+                    <div style={{display: 'flex', justifyContent: 'center'}}>
+                    <Hint />
+                    </div>
+                    {/* <button onClick={() => setAssist(true)}>Get a Hint</button> */}
+                    
+
     
                     <br></br>
                     <input onKeyUp={submitAnswer} onChange={handleGuess} value={guess} placeholder="Answer Here" />
                     <br></br><br></br>
                     {/* <button onClick={submitAnswer}>ANSWER</button> */}
+
                 </div>
             ) : (
                 <div>
@@ -100,7 +126,7 @@ const Response = () => {
                     <button onClick={backToGame}>BACK</button>
                 </div>
             )}
-        
+               
         </div>
 
 
