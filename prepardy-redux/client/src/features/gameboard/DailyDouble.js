@@ -30,7 +30,7 @@ const DailyDouble = (question) => {
                 <input type="number" value={bet} onChange={handleChange} />
                 <input type="submit" onSubmit={() => setPlacedBet(true)} />
             </div>
-        )
+        );
     }
 
 
@@ -38,7 +38,7 @@ const DailyDouble = (question) => {
         <div>
             {!placedBet ? dailyDouble : <div>{question}</div>}
         </div>
-    )
+    );
 
     // if (placedBet === false) return (
 

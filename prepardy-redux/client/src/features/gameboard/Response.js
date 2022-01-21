@@ -6,7 +6,7 @@ import { setIsClueSelected, incrementAnsweredQuestions } from '../game/gameplayS
 import { selectSelectedClue, setSelectedClue, addIncorrectClue, addCorrectClue } from '../game/cluesSlice';
 
 import { decrementScore, incrementScore } from '../score/scoreSlice';
-import { Container, Accordion, Button, Card, Col } from 'react-bootstrap';
+
 import Hint from './Hint';
 
 const Response = () => {
@@ -56,82 +56,65 @@ const Response = () => {
         dispatch(setSelectedClue({}));
     }
 
-    // const assistMode = () => {
-    //     const arr = clue.answer.split(" ");
-    //     const output = []
-
-    //     const line = "___ "
-    //     arr.each((x) => output.push(line * x.length));
-        
-    //     return <p>{output.join('  ')}</p>
-    // }
-    // const handleAssist = () => (assist) ? setAssist(false) : setAssist(true);
-
 
     return (
-        <div id="response" className='expanded-card'>
+        <div >
 
-    if (isDailyDouble && !submitBet) return (
-        <div className="daily-double">
-            <h1>DAILY DOUBLE!</h1>
-            <h3>How much would you like to wager?</h3>
-            <input onChange={handleBet} value={bet} type="number" />
-            <button onClick={submitWager}>SUBMIT</button>
-        </div>
-    )
-    else return (
-        <div id="question">
+            if (isDailyDouble && !submitBet) return (
+                <div className="daily-double">
+                    <h1>DAILY DOUBLE!</h1>
+                    <h3>How much would you like to wager?</h3>
+                    <input onChange={handleBet} value={bet} type="number" />
+                    <button onClick={submitWager}>SUBMIT</button>
+                </div>
+            )
+            else return (
+                <div id="response" className='expanded-card'>
+        
 
    
-            {!submitGuess ? (
-                <div>
-                    <p>{clue.question}</p>
+                    {!submitGuess ? (
+                        <div >
+                            <p>{clue.question}</p>
 
-                
+                        
 
-                    <div style={{display: 'flex', justifyContent: 'center'}}>
-                    <input  onChange={handleGuess} value={guess} placeholder="Answer Here" />
-                
-                    {/* <br></br> */}
-                    <button onClick={submitAnswer}>ANSWER</button>
-                    <br/><br/>
-                    </div>
-                    <br/><br/>
-                    <div style={{display: 'flex', justifyContent: 'center'}}>
-                    <Hint />
-                    </div>
-                    {/* <button onClick={() => setAssist(true)}>Get a Hint</button> */}
+                            <div style={{display: 'flex', justifyContent: 'center'}}>
+                            <input onKeyUp={submitAnswer} onChange={handleGuess} value={guess} placeholder="Answer Here" />
+                        
+                            <br/><br/>
+                            </div>
+                            <br/><br/>
+                            <div style={{display: 'flex', justifyContent: 'center'}}>
+                            <Hint />
+                            
+                            </div>
                     
-
-    
-                    <br></br>
-                    <input onKeyUp={submitAnswer} onChange={handleGuess} value={guess} placeholder="Answer Here" />
-                    <br></br><br></br>
-                    {/* <button onClick={submitAnswer}>ANSWER</button> */}
-
-                </div>
-            ) : (
-                <div>
-                    {checkAnswer() ? (
-                        <div>
-                            <h1>CORRECT!</h1>
                         </div>
                     ) : (
                         <div>
-                            <h1>INCORRECT!</h1>
-                            <h2>The correct answer is: {clue.answer}</h2>
+                            {checkAnswer() ? (
+                                <div>
+                                    <h1>CORRECT!</h1>
+                                </div>
+                            ) : (
+                                <div>
+                                    <h1>INCORRECT!</h1>
+                                    <h2>The correct answer is: {clue.answer}</h2>
+                                </div>
+                            )}
+
+                            <button onClick={backToGame}>BACK</button>
                         </div>
                     )}
-
-                    <button onClick={backToGame}>BACK</button>
+                    
+                
                 </div>
-            )}
-               
         </div>
+                    
 
 
-
-    )
+                    )
 }
 
 

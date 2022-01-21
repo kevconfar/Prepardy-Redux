@@ -27,6 +27,6 @@ const gameplaySlice = createSlice({
 });
 
 export const isClueSelected = (state) => state.gameplay.clueIsSelected;
-export const isQuestionAnswered = (state) => state.gameplay.answeredQuestions;
+export const answeredQuestions = (state) => state.gameplay.answeredQuestions;
 export const { setIsClueSelected, incrementAnsweredQuestions } = gameplaySlice.actions;
 export default gameplaySlice.reducer;
