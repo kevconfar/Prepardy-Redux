@@ -6,7 +6,9 @@ import DailyDouble from './DailyDouble';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectSelectedClue, setSelectedClue } from '../game/cluesSlice';
 import { setIsClueSelected } from '../game/gameplaySlice';
+
 import Hint from './Hint';
+
 
 const AnswerForm = () => {
 
@@ -33,13 +35,14 @@ const AnswerForm = () => {
         </div>
     )
     else return (
+
         <div id="response" className='expanded-card'>
-        <div id="question">
+         <div id="question">
             {!answered ? <p>{clue.question}</p> : <div></div>}
             <div style={{display: 'flex', justifyContent: 'center'}}>
             <Answer value={bet} answer={clue.answer} setAnswered={setAnswered} clueId={clue.id} />
             
-            {/* <Hint /> */}
+            
             </div>
             {answered ? <button onClick={backToGame}>Back</button> :<div style={{display: 'flex', justifyContent: 'center'}}> <button onClick={pass}>Pass</button></div>}
             <div style={{display: 'flex', justifyContent: 'center'}}>

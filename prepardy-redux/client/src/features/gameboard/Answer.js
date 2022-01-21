@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { incrementScore, decrementScore } from '../score/scoreSlice';
 import { useDispatch } from 'react-redux';
 import { addCorrectClue, addIncorrectClue } from '../game/cluesSlice';
-// import Hint from './Hint';
+
 
 const Answer = (props) => {
 
@@ -118,7 +118,7 @@ const Answer = (props) => {
     if (!submit) return (
         <div>
             <input type="text" onChange={handleGuess} onKeyUp={handleSubmit} />
-            {/* <Hint/> */}
+
         </div>
     )
     else return (
