@@ -22,7 +22,9 @@ const DailyDouble = (props) => {
             <p id="question">How much do you want to wager? You may bet up to ${maxBet}</p>
             <input type="number" onChange={props.handleBet} max={maxBet}/>
         </div>
+
     )
+
 
 
 }

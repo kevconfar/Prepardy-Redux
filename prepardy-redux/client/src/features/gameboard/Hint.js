@@ -26,10 +26,7 @@ const StyledLetter = styled.ul`
     span.visible {
       visibility: visible;
     }
-    &[data-red='true'] span {
-      visibility: visible;
-      color: black;
-    }
+
   }
 
 `;
@@ -38,16 +35,16 @@ const Hint = () => {
 
     const clue = useSelector(selectSelectedClue);
 
-    const [hint, setHint] = useState(clue.answer);
+    const [hint] = useState(clue.answer);
     const [show, toggleShow] = useState(false);
 
     const letters = hint.split('').map((letter, i) => (
         <StyledLetter key={i}>
-    <li key={i} letter="_" className="letter">
-        <span>{letter}</span>
-    </li>
-    </StyledLetter>
-));
+            <li key={i} letter="_" className="letter">
+                <span>{letter}</span>
+            </li>
+        </StyledLetter>
+    ));
 
     return (
         <div>
@@ -59,50 +56,8 @@ const Hint = () => {
         
         
     )
-//     // const dispatch = useDispatch();
-//     const words = clue.answer.split('');
-//     const letters = words.map((word, i) => (
-//         <StyledTitle key={i}>
-//       {word.map((letter, i) => (
-//         <li
-//           key={i}
-//           className="titleLetter"
-//           >
-//               <span>{letter}</span>
-//           </li>
-//     ))}
-//     <li>&nbsp;</li>
-//     </StyledTitle>
-//   ));
 
-//   return <Section className="title">{letters}</Section>;
 };
-    
-
-    
-    //     const arr = clue.answer.split('');
-    //     const output = [];
-
-    //     const line = "___ ";
-    //     arr.each((x) => output.push(line * x.length));
-        
-    //     return <p>hint here{output.join('  ')}</p>;
-    // }
-    // const handleAssist = () => (assist) ? setAssist(false) : setAssist(true);
-
-//     if (assist === true) {
-//         return(
-//             <div>
-//                 <h1>{assistMode}</h1>
-//             </div>
-//         );
-//     }
-//     return (
-//         <div>
-//             <button value={assistMode} onClick={() => setAssist(true)}>Get a Hint</button>
-//             {/* <button onClick={handleAssist}>Get A Hint</button> */}
-//         </div>
-//     );
-// }
+ 
 
 export default Hint;

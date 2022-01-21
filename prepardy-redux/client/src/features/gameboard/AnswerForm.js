@@ -7,6 +7,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectSelectedClue, setSelectedClue } from '../game/cluesSlice';
 import { setIsClueSelected } from '../game/gameplaySlice';
 
+import Hint from './Hint';
+
+
 const AnswerForm = () => {
 
     const dispatch = useDispatch();
@@ -32,10 +35,20 @@ const AnswerForm = () => {
         </div>
     )
     else return (
-        <div id="question">
+
+        <div id="response" className='expanded-card'>
+         <div id="question">
             {!answered ? <p>{clue.question}</p> : <div></div>}
+            <div style={{display: 'flex', justifyContent: 'center'}}>
             <Answer value={bet} answer={clue.answer} setAnswered={setAnswered} clueId={clue.id} />
-            {answered ? <button onClick={backToGame}>Back</button> : <button onClick={pass}>Pass</button>}
+            
+            
+            </div>
+            {answered ? <button onClick={backToGame}>Back</button> :<div style={{display: 'flex', justifyContent: 'center'}}> <button onClick={pass}>Pass</button></div>}
+            <div style={{display: 'flex', justifyContent: 'center'}}>
+            <Hint/>
+            </div>
+        </div>
         </div>
     )
 }

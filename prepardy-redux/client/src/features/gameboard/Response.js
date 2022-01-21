@@ -5,8 +5,11 @@
 // import { setIsClueSelected, incrementAnsweredQuestions } from '../game/gameplaySlice';
 // import { selectSelectedClue, setSelectedClue, addIncorrectClue, addCorrectClue } from '../game/cluesSlice';
 
+
+
+
 // import { decrementScore, incrementScore } from '../score/scoreSlice';
-=======
+
 // import { decrementScore, incrementScore } from '../score/scoreSlice';
 // import { Container, Accordion, Button, Card, Col } from 'react-bootstrap';
 // import Hint from './Hint';
@@ -16,7 +19,7 @@
 //     const dispatch = useDispatch();
 
 //     const clue = useSelector(selectSelectedClue);
-=======
+
 //     const [assist, setAssist] = useState(false);
     
 
@@ -42,7 +45,9 @@
 
     //     var reg = new RegExp('[the\s]?|[an\s]?|[a\s]?' + g + '[s]?', 'i');
 
+
     //     return (reg.test(a))
+
 
     //     if (a === g || a === "the " + g || a === g + "s" || a === "a " + g || a === "an " + g) {
     //         dispatch(incrementScore(wager))
@@ -107,7 +112,7 @@
 //             )}
         
 //         </div>
-=======
+
     // const assistMode = () => {
     //     const arr = clue.answer.split(" ");
     //     const output = []
@@ -180,7 +185,7 @@
 //             )}
                
 //         </div>
-// >>>>>>> main
+
 
 
 

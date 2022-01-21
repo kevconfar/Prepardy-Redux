@@ -6,6 +6,7 @@ import { incrementScore, decrementScore } from '../score/scoreSlice';
 import { useDispatch } from 'react-redux';
 import { addCorrectClue, addIncorrectClue } from '../game/cluesSlice';
 
+
 const Answer = (props) => {
 
     const dispatch = useDispatch();
@@ -117,6 +118,7 @@ const Answer = (props) => {
     if (!submit) return (
         <div>
             <input type="text" onChange={handleGuess} onKeyUp={handleSubmit} />
+
         </div>
     )
     else return (
