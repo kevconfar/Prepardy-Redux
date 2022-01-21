@@ -1,70 +1,34 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { selectRound } from '../game/gameplaySlice';
+import { selectScore } from '../score/scoreSlice';
 
-import { incrementScore, decrementScore } from '../score/scoreSlice';
+const DailyDouble = (props) => {
 
-import { selectSelectedClue } from '../game/cluesSlice';
+    const defaults = {"p" : 1000, "dp" : 2000}
+    const score = useSelector(selectScore);
+    const round = useSelector(selectRound);
 
-
-const DailyDouble = (question) => {
-
-    const [bet, setBet] = useState(0);
-    const [placedBet, setPlacedBet] = useState(false);
-    const dispatch = useDispatch();
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     setPlacedBet(true);
-    // }
-    const handleChange = (e) => {
-        e.preventDefault();
-        setBet(e.target.value);
-    }
-
-    const dailyDouble = () => {
-        return (
-            <div className="daily-double">
-                <h1>DAILY DOUBLE!</h1>
-                <h3>How much would you like to wager?</h3>
-                <input type="number" value={bet} onChange={handleChange} />
-                <input type="submit" onSubmit={() => setPlacedBet(true)} />
-            </div>
-        )
-    }
-
+    let maxBet;
+    (score > defaults[round]) ? maxBet = score : maxBet = defaults[round];
 
     return (
-        <div>
-            {!placedBet ? dailyDouble : <div>{question}</div>}
+        <div className="daily-double">
+            <header className="top-header">
+                <h1>DOUBLE PREPARDY!</h1>
+            </header>   
+            <p id="question">How much do you want to wager? You may bet up to ${maxBet}</p>
+            <input type="number" onChange={props.handleBet} max={maxBet}/>
         </div>
     )
 
-    // if (placedBet === false) return (
 
-    //     // <div className="daily-double">
-    //     //     <h1>DAILY DOUBLE!</h1>
-    //     //     <h3>How much would you like to wager?</h3>
-    //     //     <input type="number" value={bet} onChange={handleChange} />
-    //     //     <input type="submit" onSubmit={handleSubmit} />
-    //     // </div>
-    // );
-    // else if (placedBet) return (
+}
 
-    //     <div>
-    //         {selectedClue.question}
-    //         <Response answer={selectedClue.answer} value={bet.parseInt()} />
-
-
-
-
-    //     </div>
-    // )
-
-
-
-
-    
+DailyDouble.propTypes = {
+    handleBet: PropTypes.func
 }
 
 export default DailyDouble;

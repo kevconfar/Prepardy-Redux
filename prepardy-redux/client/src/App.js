@@ -10,9 +10,6 @@ import Welcome from "./pages/Welcome";
 import Game from "./pages/Game";
 import UserHome from "./pages/UserHome";
 
-import Tester from "./pages/Tester.js"; // THIS IS THE TEST FILE I CREATED TO FIX THE MONGO --> REDUX FLOW
-import GameTester from "./pages/GameTester.js";
-
 import Answer from "./features/answer/Answer.js";
 
 import {
@@ -43,13 +40,10 @@ function App() {
         </Container>
 
         <Routes>
-          <Route path="/tester" element={<Tester/>} /> 
           <Route path="/game" element={<Game/>} />
           <Route path="/profile" element={<UserHome/>} />
           <Route path="/" element={<Welcome/>} />
           <Route path="/answer" element={<Answer />} />
-          <Route path="/gametester" element={<GameTester />} />
-
         </Routes>
       </div>
     </Router>
