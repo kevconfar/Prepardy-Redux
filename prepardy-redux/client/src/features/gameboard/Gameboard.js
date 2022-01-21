@@ -7,6 +7,7 @@ import { answeredQuestions } from '../game/gameplaySlice';
 import { selectGame } from '../game/gameSlice';
 
 import Categories from './Categories';
+import FinalPrepardy from './FinalPrepardy';
 
 
 const Gameboard = () => {
@@ -35,8 +36,7 @@ const Gameboard = () => {
     )
     if (answered === 60) return (
         <div>
-            <h1>FINAL PREPARDY</h1>
-            <h2>{fp[0]}</h2>
+            <FinalPrepardy category={fp[0]} />
         </div>
     )
 

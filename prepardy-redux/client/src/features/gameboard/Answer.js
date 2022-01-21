@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { incrementScore, decrementScore } from '../score/scoreSlice';
 import { useDispatch } from 'react-redux';
 import { addCorrectClue, addIncorrectClue } from '../game/cluesSlice';
+import { incrementAnsweredQuestions } from '../game/gameplaySlice';
 
 const Answer = (props) => {
 
@@ -19,6 +20,7 @@ const Answer = (props) => {
     const handleSubmit = (e) => {
         if (e.key === 'Enter') {
             setSubmit(true);
+            dispatch(incrementAnsweredQuestions());
             props.setAnswered(true);
         }
     }

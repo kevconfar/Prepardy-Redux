@@ -11,24 +11,26 @@ const DailyDouble = (props) => {
     const score = useSelector(selectScore);
     const round = useSelector(selectRound);
 
+    let doubleOrFinal;
+    (props.finalPrepardy) ? doubleOrFinal = "FINAL PREPARDY!" : doubleOrFinal = "DAILY DOUBLE!"
+
     let maxBet;
     (score > defaults[round]) ? maxBet = score : maxBet = defaults[round];
 
     return (
         <div className="daily-double">
             <header className="top-header">
-                <h1>DOUBLE PREPARDY!</h1>
+                <h1>{doubleOrFinal}</h1>
             </header>   
             <p id="question">How much do you want to wager? You may bet up to ${maxBet}</p>
             <input type="number" onChange={props.handleBet} max={maxBet}/>
         </div>
     )
-
-
 }
 
 DailyDouble.propTypes = {
-    handleBet: PropTypes.func
+    handleBet: PropTypes.func,
+    finalPrepardy: PropTypes.bool
 }
 
 export default DailyDouble;

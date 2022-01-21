@@ -4,8 +4,9 @@ import Answer from './Answer';
 import DailyDouble from './DailyDouble';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { selectSelectedClue, setSelectedClue } from '../game/cluesSlice';
+import { addIncorrectClue, selectSelectedClue, setSelectedClue } from '../game/cluesSlice';
 import { setIsClueSelected } from '../game/gameplaySlice';
+import { propTypes } from 'react-bootstrap/esm/Image';
 
 const AnswerForm = () => {
 
@@ -23,11 +24,16 @@ const AnswerForm = () => {
         dispatch(setSelectedClue({}));
         dispatch(setIsClueSelected());
     }
-    const pass = () => dispatch(setIsClueSelected());
+    const pass = () => {
+        dispatch(addIncorrectClue(clue.id));
+        dispatch(setSelectedClue({}));
+        dispatch(setIsClueSelected());
+    }
+
 
     if (dailyDouble) return (
         <div>
-            <DailyDouble handleBet={handleBet} />
+            <DailyDouble handleBet={handleBet}/>
             <button onClick={() => setDailyDouble(false)}>Place Bet</button>
         </div>
     )
@@ -39,5 +45,6 @@ const AnswerForm = () => {
         </div>
     )
 }
+
 
 export default AnswerForm;
