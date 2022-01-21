@@ -24,7 +24,7 @@ const scoreSlice = createSlice({
     }
 });
 
-export const score = (state) => state.score.score;
+export const selectScore = (state) => state.score.score;
 
 export const { incrementScore, decrementScore } = scoreSlice.actions;
 export default scoreSlice.reducer;

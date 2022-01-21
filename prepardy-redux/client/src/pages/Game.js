@@ -34,17 +34,13 @@ import { Row, Col } from "react-bootstrap";
 import Gameboard from '../features/gameboard/Gameboard';
 import Scoreboard from "../features/gameboard/Scoreboard";
 
-import Response from '../features/gameboard/Response';
-
+// import Response from '../features/gameboard/Response';
+import AnswerForm from "../features/gameboard/AnswerForm";
 
 
 export default function Game() {
 
     const selectedClue = useSelector(isClueSelected);
-
-
-
-
 
     return (
         <div>
@@ -52,7 +48,7 @@ export default function Game() {
                 <h1>PREPARDY!</h1>
             </header>
             <Scoreboard />
-            {(!selectedClue) ? <Gameboard /> : <Response />}
+            {(!selectedClue) ? <Gameboard /> : <AnswerForm />}
             
         </div>
 
