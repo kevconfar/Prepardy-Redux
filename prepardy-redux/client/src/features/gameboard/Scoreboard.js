@@ -2,11 +2,11 @@ import React from 'react';
 
 import { useSelector } from 'react-redux';
 
-import { score } from '../score/scoreSlice';
+import { selectScore } from '../score/scoreSlice';
 
 const Scoreboard = () => {
 
-    const userScore = useSelector(score);
+    const userScore = useSelector(selectScore);
 
     return (
    

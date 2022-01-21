@@ -1,15 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
-
-
 const gameplaySlice = createSlice({
     name: 'gameplay',
     initialState: {
         clueIsSelected: false,
         answeredQuestions: 0,
         round: "p",
-        assistMode: false,
+        assistMode: false
     },
     reducers: {
         setIsClueSelected(state) {
@@ -27,6 +24,9 @@ const gameplaySlice = createSlice({
 });
 
 export const isClueSelected = (state) => state.gameplay.clueIsSelected;
+
 export const answeredQuestions = (state) => state.gameplay.answeredQuestions;
+export const selectRound = (state) => state.gameplay.round;
+
 export const { setIsClueSelected, incrementAnsweredQuestions } = gameplaySlice.actions;
 export default gameplaySlice.reducer;
