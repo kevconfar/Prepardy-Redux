@@ -16,7 +16,7 @@ const Clue = ({clueObj}) => {
 
     const handleClick = () => {
         // alert(`${clueObj.question}`);
-        // if (!correct.includes(clueObj))
+
         dispatch(setSelectedClue(clueObj));
         dispatch(setIsClueSelected());
         // clueObj.played = true
