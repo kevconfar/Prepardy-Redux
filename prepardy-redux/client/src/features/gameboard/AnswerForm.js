@@ -39,15 +39,26 @@ const AnswerForm = () => {
         <div id="response" className='expanded-card'>
          <div id="question">
             {!answered ? <p>{clue.question}</p> : <div></div>}
-            <div style={{display: 'flex', justifyContent: 'center'}}>
+            <div className="d-flex justify-content-center">
             <Answer value={bet} answer={clue.answer} setAnswered={setAnswered} clueId={clue.id} />
             
             
             </div>
-            {answered ? <button onClick={backToGame}>Back</button> :<div style={{display: 'flex', justifyContent: 'center'}}> <button onClick={pass}>Pass</button></div>}
-            <div style={{display: 'flex', justifyContent: 'center'}}>
-            <Hint/>
-            </div>
+            {answered ? 
+                <div className="d-flex justify-content-center">
+                <button onClick={backToGame}>Back</button> 
+                </div>
+                :
+                <div>
+                    <div className="d-flex justify-content-center"> 
+                        <button onClick={pass}>Pass</button>
+                    </div>
+                    <div className="d-flex justify-content-center">
+                        <Hint/>
+                    </div>
+                </div>
+            }
+            
         </div>
         </div>
     )

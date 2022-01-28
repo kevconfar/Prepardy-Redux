@@ -23,9 +23,9 @@ export default function Welcome() {
                     </span>
                 </div>
 
-                <Carousel>
+                {/* <Carousel>
                     <Carousel.Item>{games.map(game => <GameViewer />)}</Carousel.Item>    
-                </Carousel>
+                </Carousel> */}
                 <StartGame />
                 
             </Container>
