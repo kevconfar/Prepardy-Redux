@@ -27,7 +27,7 @@ function App() {
         <nav >
           <Row>
             <Col>
-              <Link to="/">Home</Link>
+              <Link to="/">Welcome</Link>
             </Col>
             <Col>
               <Link to="/game">Game</Link>
