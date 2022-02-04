@@ -24,7 +24,12 @@ app.use(express.urlencoded({ extended: true }));
 // app.listen(5000, () => {
 //     console.log(`SERVER RUNNING ON PORT: ${process.env.PORT} `)
 // })
-
+app.use('/login', (req, res) => {
+    res.send({
+      token: 'test123'
+    });
+  });
+  
 app.get('/test', (req, res) => {
 
     console.log("TEST WORKED")
