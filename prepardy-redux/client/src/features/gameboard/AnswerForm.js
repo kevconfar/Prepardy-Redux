@@ -36,8 +36,8 @@ const AnswerForm = () => {
     )
     else return (
 
-        <div id="response" className='expanded-card'>
-         <div id="question">
+        <div className="expanded-card">
+         <div id="question" >
             {!answered ? <p>{clue.question}</p> : <div></div>}
             <div className="d-flex justify-content-center">
             <Answer value={bet} answer={clue.answer} setAnswered={setAnswered} clueId={clue.id} />

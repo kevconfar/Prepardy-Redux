@@ -21,8 +21,8 @@ export default function Profile() {
     const answered = useSelector(answeredQuestions);
 
     return (
-        <div>
-            <SearchGames />
+        <div >
+            {/* <SearchGames /> */}
             <h1>PROFILE PAGE</h1>
             <br/>
             <h3>Your Correct Answers</h3>
