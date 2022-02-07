@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 
+
 async function loginUser(credentials) {
     return fetch('http://localhost:3000/login', {
       method: 'POST',
@@ -27,23 +28,25 @@ function Login({setToken}) {
           username,
           password
         });
-        setToken(token);
+        setToken(token, alert('logged in!'));
     }
 
     
+    
   
     return (
-      <>
+      <div>
         <Button variant="primary" onClick={handleShow}>
           Login
         </Button>
         
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
+        
+        <Modal show={show} onHide={handleClose} style={{color: "white"}} centered>
+          <Modal.Header style={{background: "#111193"}} closeButton>
 
-            <Modal.Title>Login</Modal.Title>
+            <Modal.Title style={{color: "gold"}} centered>Login</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
+          <Modal.Body style={{background: "#0120cb"}}>
             <Form onSubmit={handleSubmit}>
               <Form.Group>
                 <Form.Label>
@@ -62,7 +65,7 @@ function Login({setToken}) {
             
             </Form>
           </Modal.Body>
-          <Modal.Footer>
+          <Modal.Footer style={{background: "#111193"}}>
             <Button variant="primary" onClick={handleClose}>
               Create Account
             </Button>
@@ -72,7 +75,8 @@ function Login({setToken}) {
             
           </Modal.Footer>
         </Modal>
-      </>
+        
+      </div>
     );
   }
   
