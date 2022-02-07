@@ -47,7 +47,7 @@ body {
   text-align: center;
   padding: 1em;
   /* background: linear-gradient(180deg, #2e2e3a 0%, #0c0c2c 100%); */
-  background: #49127f;
+  /* background: #49127f;
   background: -moz-radial-gradient(
     center,
     #49127f 0%,
@@ -65,7 +65,12 @@ body {
     #49127f 0%,
     #381f7a 45%,
     #111193 100%
-  );
+  ); */
+}
+
+body {
+  background: url("https://images.unsplash.com/photo-1614854262178-03c96e9c8c28?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=gradienta-NUzd3M4XouA-unsplash.jpg");
+  background-size: cover;
 }
 
 .top-header {
@@ -224,10 +229,7 @@ body {
   grid-column: 4 / 7;
 } */
 
-body {
-  background: url("https://images.unsplash.com/photo-1614854262178-03c96e9c8c28?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=gradienta-NUzd3M4XouA-unsplash.jpg");
-  background-size: cover;
-}
+
 
 .content h1 {
   font-size: 2.75rem;
@@ -250,11 +252,43 @@ body {
   border: black 15px;
 }
 
-/* Login */
+/* create account */
 
-#login .modal {
-  background-color: var(--blue);
+#createAccount {
+ 
+  margin-top: 4rem;
 }
+
+
+.form {
+  margin-top: 2rem;
+  border: solid black 3px;
+  padding: 30px;
+  background: #49127f;
+  background: -moz-radial-gradient(
+    center,
+    #49127f 0%,
+    #381f7a 45%,
+    #111193 100%
+  );
+  background: -webkit-radial-gradient(
+    center,
+    #49127f 0%,
+    #381f7a 45%,
+    #111193 100%
+  );
+  background: radial-gradient(
+    ellipse at center,
+    #49127f 0%,
+    #381f7a 45%,
+    #111193 100%
+  );
+}
+
+.form p {
+  color: gold;
+}
+
 
   
 

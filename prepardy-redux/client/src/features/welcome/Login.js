@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { Modal, Button, Form } from "react-bootstrap";
+import CreateAccount from '../user/CreateAccount';
 
 
 async function loginUser(credentials) {
@@ -66,7 +67,7 @@ function Login({setToken}) {
             </Form>
           </Modal.Body>
           <Modal.Footer style={{background: "#111193"}}>
-            <Button variant="primary" onClick={handleClose}>
+            <Button variant="primary" href="/create-account">
               Create Account
             </Button>
             <Button variant="secondary" onClick={handleClose}>
