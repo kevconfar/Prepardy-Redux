@@ -14,6 +14,7 @@ import Answer from "./features/answer/Answer.js";
 
 import Login from './features/welcome/Login';
 import Logout from "./features/welcome/Logout";
+import CreateAccount from './features/user/CreateAccount';
 import useToken from "./app/useToken";
 
 
@@ -55,6 +56,7 @@ function App() {
           <Route path="/profile" element={<UserHome/>} />
           <Route path="/" element={<Welcome/>} />
           <Route path="/answer" element={<Answer />} />
+          <Route path="/create-account" element={<CreateAccount/>} />
           
         </Routes>
       </div>
