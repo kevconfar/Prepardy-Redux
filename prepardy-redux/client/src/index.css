@@ -250,5 +250,11 @@ body {
   border: black 15px;
 }
 
+/* Login */
+
+#login .modal {
+  background-color: var(--blue);
+}
+
   
 

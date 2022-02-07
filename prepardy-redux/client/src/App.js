@@ -9,8 +9,13 @@ import {
 import Welcome from "./pages/Welcome";
 import Game from "./pages/Game";
 import UserHome from "./pages/UserHome";
-// import Login from "./features/welcome/Login";
+
 import Answer from "./features/answer/Answer.js";
+
+import Login from './features/welcome/Login';
+import Logout from "./features/welcome/Logout";
+import useToken from "./app/useToken";
+
 
 import {
   Col,
@@ -20,6 +25,9 @@ import {
 } from "react-bootstrap";
 
 function App() {
+
+  const {token, setToken} = useToken();
+
   return (
     <Router>
       <div>
@@ -35,9 +43,9 @@ function App() {
             <Col>
               <Link to="/profile">Profile</Link>
             </Col>
-            {/* <Col>
-              <Link to="/login">Log In</Link>
-            </Col> */}
+            <Col>
+              {!token ? <Login setToken={setToken} /> : <Logout setToken={setToken}/>}
+            </Col>
           </Row>  
         </nav>
         </Container>
@@ -47,7 +55,7 @@ function App() {
           <Route path="/profile" element={<UserHome/>} />
           <Route path="/" element={<Welcome/>} />
           <Route path="/answer" element={<Answer />} />
-          {/* <Route path="/login" element={<Login />} /> */}
+          
         </Routes>
       </div>
     </Router>

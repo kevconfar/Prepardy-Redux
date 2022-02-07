@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+
+
 export default function useToken() {
   const getToken = () => {
     const tokenString = localStorage.getItem('token');
@@ -14,8 +16,14 @@ export default function useToken() {
     setToken(userToken.token);
   };
 
+//   const removeToken = (userToken) => { // export function from module 
+//     sessionStorage.removeItem("token");
+//     setToken(null);
+//   }
+
   return {
     setToken: saveToken,
     token
   }
+  
 }
