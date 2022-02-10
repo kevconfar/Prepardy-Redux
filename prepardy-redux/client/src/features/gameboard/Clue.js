@@ -30,9 +30,9 @@ const Clue = ({clueObj}) => {
                     // onClick={() => setOpen(true)}
                     onClick={handleClick}
                     className="normal-card"
-                    layoutId="expandable-card"
+                    
                 >
-                    <h1 layoutId="expandable-card-h" className="clueValue">
+                    <h1  className="clueValue">
                         ${clueObj.value ? clueObj.value : 1000}
                     </h1>
                 </div>

@@ -11,6 +11,12 @@ import Game from "./pages/Game";
 import UserHome from "./pages/UserHome";
 
 
+import Login from './features/welcome/Login';
+import Logout from "./features/welcome/Logout";
+import CreateAccount from './features/user/CreateAccount';
+import useToken from "./app/useToken";
+
+
 import {
   Col,
   Row,
@@ -19,6 +25,9 @@ import {
 } from "react-bootstrap";
 
 function App() {
+
+  const {token, setToken} = useToken();
+
   return (
     <Router>
       <div>
@@ -26,13 +35,16 @@ function App() {
         <nav >
           <Row>
             <Col>
-              <Link to="/">Home</Link>
+              <Link to="/">Welcome</Link>
             </Col>
             <Col>
               <Link to="/game">Game</Link>
             </Col>
             <Col>
               <Link to="/profile">Profile</Link>
+            </Col>
+            <Col>
+              {!token ? <Login setToken={setToken} /> : <Logout setToken={setToken}/>}
             </Col>
           </Row>  
         </nav>
@@ -42,6 +54,12 @@ function App() {
           <Route path="/game" element={<Game/>} />
           <Route path="/profile" element={<UserHome/>} />
           <Route path="/" element={<Welcome/>} />
+<<<<<<< HEAD
+=======
+          <Route path="/answer" element={<Answer />} />
+          <Route path="/create-account" element={<CreateAccount/>} />
+          
+>>>>>>> e6bf84360b45edc78a7f63eb736ad9cb329fc3ac
         </Routes>
       </div>
     </Router>

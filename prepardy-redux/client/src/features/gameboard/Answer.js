@@ -8,6 +8,7 @@ import { addCorrectClue, addIncorrectClue } from '../game/cluesSlice';
 import { incrementAnsweredQuestions } from '../game/gameplaySlice';
 
 
+
 const Answer = (props) => {
 
     const dispatch = useDispatch();

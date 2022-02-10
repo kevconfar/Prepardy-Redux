@@ -16,6 +16,7 @@ app.use(cors  ());
 app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 
+<<<<<<< HEAD
 // User Routes
 app.use("/api/auth", require("./routes/auth"));
 // app.use("/api/private", require("./routes/private"));
@@ -24,6 +25,18 @@ app.use('/games', require("./routes/games.js"));
 app.use('/clues', require("./routes/clues.js"));
 
 app.use(errorHandler);
+=======
+// app.listen(5000, () => {
+//     console.log(`SERVER RUNNING ON PORT: ${process.env.PORT} `)
+// })
+app.use('/login', (req, res) => {
+    res.send({
+      token: 'test123'
+    });
+  });
+  
+app.get('/test', (req, res) => {
+>>>>>>> e6bf84360b45edc78a7f63eb736ad9cb329fc3ac
 
 const server = app.listen(process.env.PORT, () =>
     console.log(`Sever running on port ${process.env.PORT}`)

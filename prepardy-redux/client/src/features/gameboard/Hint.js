@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import { useSelector } from 'react-redux';
 import { selectSelectedClue } from '../game/cluesSlice';
-import styled from 'styled-components';
+import Letter from './Letters';
 
+<<<<<<< HEAD
 const Section = styled.section`padding: 20px 0 0;`;
 const StyledLetter = styled.ul`
   display: inline-block;
@@ -30,6 +31,8 @@ const StyledLetter = styled.ul`
   }
 
 `;
+=======
+>>>>>>> e6bf84360b45edc78a7f63eb736ad9cb329fc3ac
 
 const Hint = () => {
 
@@ -38,6 +41,7 @@ const Hint = () => {
     const [hint] = useState(clue.answer);
     const [show, toggleShow] = useState(false);
 
+<<<<<<< HEAD
     const letters = hint.split('').map((letter, i) => (
         <StyledLetter key={i}>
             <li key={i} letter="_" className="letter">
@@ -45,19 +49,37 @@ const Hint = () => {
             </li>
         </StyledLetter>
     ));
+=======
+    
+    
+>>>>>>> e6bf84360b45edc78a7f63eb736ad9cb329fc3ac
 
     return (
         <div>
-            <button onClick={() => toggleShow(!show)}>Get a Hint {show ? '' : ''}</button> 
+          
+            <button onClick={() => toggleShow(!show)}>Get a Hint</button> 
             {show && <div>
-            {letters}
+              
+              {hint.split('').map((letter, index) => {
+                return (
+                  <Letter key={index} letter={letter} />
+                )
+              })}
+             
+            
     </div>}
         </div>
         
         
+<<<<<<< HEAD
     )
 
 };
+=======
+    );
+
+}
+>>>>>>> e6bf84360b45edc78a7f63eb736ad9cb329fc3ac
  
 
 export default Hint;

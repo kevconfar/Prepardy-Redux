@@ -35,6 +35,8 @@ const DailyDouble = (props) => {
 
     )
 
+
+
 }
 
 DailyDouble.propTypes = {

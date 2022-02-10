@@ -35,47 +35,12 @@ const Category = ({title}) => {
                             </li>
                         );
                     })}
-                    {/* {categoryClues.map((clue) => {
-                        return (
-                            <li>
-                                <Clue
-                                    clueObj={clue}
-                                />
-                            </li>
-                        );
-                    })} */}
                 </ul>
             </div>
         </div>
     );
-
-    // return (
-    //     <div className="category">
-    //         <div className="column">
-    //             <div className="header">{title}</div>
-    //             <ul>
-    //                 {categoryClues.map((clue) => {
-    //                     return (
-    //                         <li>
-    //                             {incorrect.includes(clue) || correct.includes(clue) ? (
-    //                                 <div className="clueValue"></div>
-    //                             ) : (
-    //                                 <Clue
-    //                                     clueObj={clue}
-    //                                 />
-    //                             )}
-    //                         </li>
-    //                     );
-    //                 })}
-    //             </ul>
-    //         </div>
-    //     </div>
-    // );
 };
 
 export default Category;
 
 
-// Category.propTypes = {
-//     title: PropTypes.string
-// };
