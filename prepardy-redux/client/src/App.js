@@ -10,7 +10,6 @@ import Welcome from "./pages/Welcome";
 import Game from "./pages/Game";
 import UserHome from "./pages/UserHome";
 
-import Answer from "./features/answer/Answer.js";
 
 import Login from './features/welcome/Login';
 import Logout from "./features/welcome/Logout";
@@ -55,9 +54,12 @@ function App() {
           <Route path="/game" element={<Game/>} />
           <Route path="/profile" element={<UserHome/>} />
           <Route path="/" element={<Welcome/>} />
+<<<<<<< HEAD
+=======
           <Route path="/answer" element={<Answer />} />
           <Route path="/create-account" element={<CreateAccount/>} />
           
+>>>>>>> e6bf84360b45edc78a7f63eb736ad9cb329fc3ac
         </Routes>
       </div>
     </Router>

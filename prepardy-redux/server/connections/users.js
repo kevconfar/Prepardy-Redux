@@ -4,10 +4,10 @@ dotenv.config();
 
 mongoose.createConnection(process.env.MONGODB_URI);
 
-const userSchema = require("../model/users.model");
+const UserSchema = require("../model/users.model");
 
 
 const conn = mongoose.createConnection(process.env.MONGODB_URI);
-const User = conn.model('Users', userSchema, "Users");
+const User = conn.model('Users', UserSchema, "Users");
 
 module.exports = User;

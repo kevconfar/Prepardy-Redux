@@ -6,7 +6,8 @@ const gameplaySlice = createSlice({
         clueIsSelected: false,
         answeredQuestions: 0,
         round: "p",
-        assistMode: false
+        assistMode: false,
+        gameComplete: false
     },
     reducers: {
         setIsClueSelected(state) {
@@ -19,6 +20,9 @@ const gameplaySlice = createSlice({
         },
         setAssistMode(state) {
             (state.assistMode) ? state.assistMode = false : state.assistMode = true;
+        },
+        setGameComplete(state) {
+            state.gameComplete = true;
         }
     }
 });
@@ -28,5 +32,5 @@ export const isClueSelected = (state) => state.gameplay.clueIsSelected;
 export const answeredQuestions = (state) => state.gameplay.answeredQuestions;
 export const selectRound = (state) => state.gameplay.round;
 
-export const { setIsClueSelected, incrementAnsweredQuestions } = gameplaySlice.actions;
+export const { setIsClueSelected, incrementAnsweredQuestions, setGameComplete } = gameplaySlice.actions;
 export default gameplaySlice.reducer;

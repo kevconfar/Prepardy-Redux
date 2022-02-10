@@ -7,6 +7,7 @@ import { answeredQuestions } from '../game/gameplaySlice';
 import { selectGame } from '../game/gameSlice';
 
 import Categories from './Categories';
+import FinalPrepardy from './FinalPrepardy';
 
 
 const Gameboard = () => {
@@ -14,13 +15,7 @@ const Gameboard = () => {
     const game = useSelector(selectGame);
     const { p, dp, fp } = game.rounds;
 
-    const [categories, setCategories] = useState(p);
-
-    // useEffect(() => {
-
-
-    // }, [categories])
-
+    // const [categories, setCategories] = useState(p);
 
     const answered = useSelector(answeredQuestions);
 
@@ -34,10 +29,8 @@ const Gameboard = () => {
         <Categories categories={dp} />
     )
     if (answered === 60) return (
-        <div>
-            <h1>FINAL PREPARDY</h1>
-            <h2>{fp[0]}</h2>
-        </div>
+        <FinalPrepardy category={fp[0]} />
+
     )
 
 
