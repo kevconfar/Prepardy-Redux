@@ -10,7 +10,6 @@ import Welcome from "./pages/Welcome";
 import Game from "./pages/Game";
 import UserHome from "./pages/UserHome";
 
-import Answer from "./features/answer/Answer.js";
 
 import {
   Col,
@@ -43,7 +42,6 @@ function App() {
           <Route path="/game" element={<Game/>} />
           <Route path="/profile" element={<UserHome/>} />
           <Route path="/" element={<Welcome/>} />
-          <Route path="/answer" element={<Answer />} />
         </Routes>
       </div>
     </Router>

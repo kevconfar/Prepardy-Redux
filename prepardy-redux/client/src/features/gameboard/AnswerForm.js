@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
 
+import PropTypes from 'prop-types';
+
 import Answer from './Answer';
 import DailyDouble from './DailyDouble';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { addIncorrectClue, selectSelectedClue, setSelectedClue } from '../game/cluesSlice';
-import { setIsClueSelected } from '../game/gameplaySlice';
+import { incrementAnsweredQuestions, setIsClueSelected } from '../game/gameplaySlice';
 import { propTypes } from 'react-bootstrap/esm/Image';
 
-const AnswerForm = () => {
+import Hint from './Hint';
+
+
+const AnswerForm = (props) => {
 
     const dispatch = useDispatch();
 
@@ -26,25 +31,38 @@ const AnswerForm = () => {
     }
     const pass = () => {
         dispatch(addIncorrectClue(clue.id));
-        dispatch(setSelectedClue({}));
-        dispatch(setIsClueSelected());
+        dispatch(incrementAnsweredQuestions());
+        backToGame();
     }
 
 
-    if (dailyDouble) return (
+    if (dailyDouble || props.finalPrepardy) return (
         <div>
             <DailyDouble handleBet={handleBet}/>
             <button onClick={() => setDailyDouble(false)}>Place Bet</button>
         </div>
     )
     else return (
-        <div id="question">
-            {!answered ? <p>{clue.question}</p> : <div></div>}
+
+        <div id="response" className='expanded-card'>
+         <div id="question">
+            {!answered ? <p>{clue.question.toUpperCase()}</p> : <div></div>}
+            <div style={{display: 'flex', justifyContent: 'center'}}>
             <Answer value={bet} answer={clue.answer} setAnswered={setAnswered} clueId={clue.id} />
-            {answered ? <button onClick={backToGame}>Back</button> : <button onClick={pass}>Pass</button>}
+            
+            
+            </div>
+            {answered ? <button onClick={backToGame}>Back</button> :<div style={{display: 'flex', justifyContent: 'center'}}> <button onClick={pass}>Pass</button></div>}
+            <div style={{display: 'flex', justifyContent: 'center'}}>
+            <Hint/>
+            </div>
+        </div>
         </div>
     )
 }
 
+AnswerForm.propTypes = {
+    finalPrepardy: PropTypes.bool
+}
 
 export default AnswerForm;

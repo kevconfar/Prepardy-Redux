@@ -15,13 +15,7 @@ const Gameboard = () => {
     const game = useSelector(selectGame);
     const { p, dp, fp } = game.rounds;
 
-    const [categories, setCategories] = useState(p);
-
-    // useEffect(() => {
-
-
-    // }, [categories])
-
+    // const [categories, setCategories] = useState(p);
 
     const answered = useSelector(answeredQuestions);
 
@@ -35,9 +29,8 @@ const Gameboard = () => {
         <Categories categories={dp} />
     )
     if (answered === 60) return (
-        <div>
-            <FinalPrepardy category={fp[0]} />
-        </div>
+        <FinalPrepardy category={fp[0]} />
+
     )
 
 
@@ -65,7 +58,7 @@ const Gameboard = () => {
     //         )}
     //     </div>
     // );
-};
+}
 
 
 

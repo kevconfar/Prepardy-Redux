@@ -1,38 +1,71 @@
 const mongoose = require("mongoose");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 
 const UserSchema = new mongoose.Schema({
 
-    name: {
+    username: {
         type: String,
-        required: true
-    },
-    password: {
-        type: String,
-        required: true
+        required: [true, "Please provide a username."]
     },
     email: {
         type: String,
-        required: true
+        required: [true, "Please provide an email."],
+        unique: true,
+        match: [
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+            "Please provide a valid email address"
+        ]
     },
-    gamesPlayed: {
-        type: [Map] // ex:  [ {gameID: Num, Incorrect: Num, Correct: Num, score: Num, won: Boolean}, ... ]
-    },
-    incorrectClues: {
-        type: [Map] // ex:  [ { clueId, clue, answer, userAnswer}]
-    },
-    correctClues: {
-        type: [Map] // ex: [ { clueId, answer }] .... OR it could just be an array of clueId's
-    },
-    weakSubjects: {
-        type: [Map] // OPTIONAL ex: [ { person: "Napoleon", clueIds: [Strings], date:  } ]
-    },
-    buzzTimes: {
-        type: Map // ex: { min: Num, max: Num, missed: num, avg: Num, totalBuzzes: Num }
-    },
+    password: {
+        type: String,
+        required: [true, "Please add a password"],
+        minlength: 6,
+        select: false
 
+    },
+    resetPasswordToken: String,
+    resetPasswordExpire: Date,
+    // gamesPlayed: {
+    //     type: [Map] // ex:  [ {gameID: Num, Incorrect: Num, Correct: Num, score: Num, won: Boolean}, ... ]
+    // },
+    // incorrectClues: {
+    //     type: [Map] // ex:  [ { clueId, clue, answer, userAnswer}]
+    // },
+    // correctClues: {
+    //     type: [Map] // ex: [ { clueId, answer }] .... OR it could just be an array of clueId's
+    // },
+    // weakSubjects: {
+    //     type: [Map] // OPTIONAL ex: [ { person: "Napoleon", clueIds: [Strings], date:  } ]
+    // },
+    // buzzTimes: {
+    //     type: Map // ex: { min: Num, max: Num, missed: num, avg: Num, totalBuzzes: Num }
+    // },
 
 });
 
+UserSchema.pre("save", async function(next) {
+    if(!this.isModified("password")) {
+        next();
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+    next(); 
+})
+
+UserSchema.methods.matchPasswords = async function(password) {
+    return await bcrypt.compare(password, this.password)
+
+}
+
+UserSchema.methods.getSignedToken = function() {
+    return jwt.sign({ id: this._id }, process.env.JWT_SECRET, { 
+        expiresIn: process.env.JWT_EXPIRE 
+    });
+
+}
+ 
 
 module.exports = UserSchema;
 

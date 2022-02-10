@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { addCorrectClue, addIncorrectClue } from '../game/cluesSlice';
 import { incrementAnsweredQuestions } from '../game/gameplaySlice';
 
+
 const Answer = (props) => {
 
     const dispatch = useDispatch();
@@ -57,6 +58,7 @@ const Answer = (props) => {
                 }
             }
         }
+
         if (correct) {
             dispatch(incrementScore(props.value / 2));
             dispatch(addCorrectClue(props.clueId));
@@ -66,59 +68,12 @@ const Answer = (props) => {
             dispatch(addIncorrectClue(props.clueId));
             return false;
         }
-
     }
-
-    // const checkAnswer = () => {
-
-    //     let ans = props.answer, ges = guess;
-    //     let a = ans.toLowerCase(), g = ges.toLowerCase();
-
-    //     const filt = (str) => str.replace(/^the\s|^an\s|^a\s/i, "");
-
-    //     let filtA, filtG;
-    //     // let correct = false;
-    //     if (a === g || a + "s" === g || a === g + "s") {
-    //         // correct = true;
-    //         setCorrect(true);
-    //     } else {
-    //         filtA = filt(a);
-    //         filtG = filt(g);
-    //         if (filtA === filtG || filtA === filtG + "s" || filtA + "s" === filtG) {
-    //             correct = true;
-    //         } else {
-                // const nameRegx = /([A-Z]\w+|[A-Z]\.)\s?([A-Z]?\.)?\s?([A-Z]\w+)/
-    //             const andRegx = /\w+\sand\w+/i
-
-    //             const arrG = g.split(" ");
-    //             const lenG = arrG.length();
-
-                // if (nameRegx.test(ans)) {
-                //     const match = ans.match(nameRegx);
-                //     if (match[3] === arrG[lenG - 1] || match[3].toLowerCase() === arrG[lenG - 1].toLowerCase()) {
-                //         correct = true;
-                //     }
-    //             } else if (andRegx.test(a)) {
-    //                 if (a.split(" and ").sort() === g.split(" and ").sort()) {
-    //                     correct = true;
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     if (correct === true) {
-    //         dispatch(incrementScore(props.value));
-    //         dispatch(addCorrectClue(props.clueId))
-    //         return true;
-    //     } else {
-    //         dispatch(decrementScore(props.value));
-    //         dispatch(addIncorrectClue(props.clueId));
-    //         return false;
-    //     }        
-    // }
  
     if (!submit) return (
         <div>
             <input type="text" onChange={handleGuess} onKeyUp={handleSubmit} />
+
         </div>
     )
     else return (
