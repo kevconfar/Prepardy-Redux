@@ -25,12 +25,12 @@ exports.register = async (req, res, next) => {
 exports.login = async (req, res, next) => {
     const { username, password } = req.body;
     if (!username || !password) {
-        return next(new ErrorResponse("Please provide an email and password", 400));
+        return next(new ErrorResponse("Please provide a username and password", 400));
     
     }
 
     try {
-        const user = await User.findOne({ email }).select("+password")
+        const user = await User.findOne({ username }).select("+password") // changed from email to username
 
         if (!user) {
             return next(new ErrorResponse("Invalid credentials", 401)); // user not found
