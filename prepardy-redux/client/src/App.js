@@ -32,8 +32,8 @@ function App() {
   return (
     <Router>
       <div>
-        <Container className="d-flex justify-content-center">
-        <nav >
+        <Container >
+        <nav className="d-flex justify-content-center">
           <Row>
             <Col>
               <Link to="/">Welcome</Link>
@@ -44,11 +44,14 @@ function App() {
             <Col>
               <Link to="/profile">Profile</Link>
             </Col>
-            <Col>
+            {/* <Col>
               {!token ? <Login setToken={setToken} /> : <Logout setToken={setToken}/>}
-            </Col>
+            </Col> */}
           </Row>  
         </nav>
+        <div className="d-flex justify-content-end">
+              {!token ? <Login setToken={setToken} /> : <Logout setToken={setToken}/>}
+              </div>
         </Container>
 
         <Routes>
