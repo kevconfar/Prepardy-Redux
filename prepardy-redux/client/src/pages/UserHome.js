@@ -19,13 +19,14 @@ export default function Profile() {
     const incorrect = useSelector(selectIncorrectClues);
     const correct = useSelector(selectCorrectClues);
     const answered = useSelector(answeredQuestions);
-
+    
     return (
         <div >
             {/* <SearchGames /> */}
             <h1>PROFILE PAGE</h1>
             <br/>
             <h3>Your Correct Answers</h3>
+
             {correct.map((clue, i) => {
                 return (
                     <li>{clue}</li>

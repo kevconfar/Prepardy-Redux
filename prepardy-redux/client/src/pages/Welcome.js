@@ -26,9 +26,6 @@ export default function Welcome() {
                     <span style={{ fontSize: 60 }}>
                         <h1 className="d-flex justify-content-center">Welcome to PREPARDY!</h1>
                     </span>
-                    <div className="d-flex justify-content-center">
-                    
-                    </div>
                 </div>
                 <Container >
                 {/* <SearchGames/> */}
@@ -36,7 +33,11 @@ export default function Welcome() {
                 {/* <Carousel>
                     <Carousel.Item>{games.map(game => <GameViewer />)}</Carousel.Item>    
                 </Carousel> */}
+                <div className="d-flex justify-content-center">
+                    
                 <StartGame />
+                    </div>
+                
                 </Container>
                 
             </Container>
