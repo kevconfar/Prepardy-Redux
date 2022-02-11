@@ -57,12 +57,8 @@ function App() {
           <Route path="/game" element={<Game/>} />
           <Route path="/profile" element={<UserHome/>} />
           <Route path="/" element={<Welcome/>} />
-<<<<<<< HEAD
-=======
-          <Route path="/answer" element={<Answer />} />
           <Route path="/create-account" element={<CreateAccount/>} />
           
->>>>>>> e6bf84360b45edc78a7f63eb736ad9cb329fc3ac
         </Routes>
       </div>
     </Router>

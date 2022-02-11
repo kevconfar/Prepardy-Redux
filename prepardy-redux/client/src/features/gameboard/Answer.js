@@ -8,7 +8,6 @@ import { addCorrectClue, addIncorrectClue } from '../game/cluesSlice';
 import { incrementAnsweredQuestions } from '../game/gameplaySlice';
 
 
-
 const Answer = (props) => {
 
     const dispatch = useDispatch();
@@ -26,6 +25,30 @@ const Answer = (props) => {
             props.setAnswered(true);
         }
     }
+
+    // start just testing
+
+    // user taps enter or space if they want to answer THEN answer form/input shows
+    // time how long AFTER read-time is over 
+    // ONE timer, a state value is created at FIRST click of space/enter (buzz in) AND how long it takes to start typing (to answer).
+    // timer will STOP incrementing after user starts typing
+
+    // timer hack: dont use an actual timer, just log the times and calculate elapsed time using the differences between the recorded values.
+
+
+    const buzzIn = () => { 
+
+        return (
+            <div className="buzz-input">
+                
+
+
+            </div>
+        )
+    }
+
+
+    // end just testing
 
 
     const checkAnswer = () => { // COMPARES USER GUESS TO CLUE.ANSWER

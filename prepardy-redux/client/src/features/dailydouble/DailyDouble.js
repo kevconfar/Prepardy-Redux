@@ -1,36 +1,45 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 
-import { selectScore } from '../score/scoreSlice';
-import { selectRound } from '../game/gameplaySlice';
+// import { selectScore } from '../score/scoreSlice';
+// import { selectRound } from '../game/gameplaySlice';
 
-export const DailyDouble = () => {
+// import { selectSelectedClue } from '../game/cluesSlice';
 
-    const [bet, setBet] = useState(0);
-    const [submit, setSubmit] = useState(false);
+// export const DailyDouble = () => {
 
-    const defaults = { "p" : 1000, "dp" : 2000 }
-    const bank = useSelector(selectScore);
-    const round = useSelector(selectRound);
+//     const clue = useSelector(selectSelectedClue);
 
-    const maxBet =  (defaults[round] > bank) ? defaults[round] : bank;
+//     const [bet, setBet] = useState(0);
+//     const [submit, setSubmit] = useState(false);
 
-    const handleBet = (e) => setBet(e.target.value);
-    const submitBet = (e) => {
-        if (e.key === "Enter") setSubmit(true);
-    }
+//     const defaults = { "p" : 1000, "dp" : 2000 }
+//     const bank = useSelector(selectScore);
+//     const round = useSelector(selectRound);
 
-    return (
-        <div className="daily-double">
-            <div className="header">
-                DAILY DOUBLE!
-            </div>
-            <h2>You may wager up to ${maxBet}.</h2>
-            <input onChange={handleBet} placeholder="Place Wager" onSubmit={submitBet} type="number" max={maxBet} />
+//     const maxBet =  (defaults[round] > bank) ? defaults[round] : bank;
 
-        </div>
-    )
+//     const handleBet = (e) => setBet(e.target.value);
+//     const submitBet = (e) => {
+//         if (e.key === "Enter") setSubmit(true);
+//     }
 
-}
+//     if (submit === false) return (
+//         <div className="daily-double">
+//             <div className="header">
+//                 DAILY DOUBLE!
+//             </div>
+//             <h2>You may wager up to ${maxBet}.</h2>
+//             <input onChange={handleBet} placeholder="Place Wager" onSubmit={submitBet} type="number" max={maxBet} />
+//         </div>
+//     )
+//     else return (
+//         <div className="question">
+//             {}
+
+//         </div>
+//     )
+
+// }
 
